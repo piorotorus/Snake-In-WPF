@@ -22,7 +22,7 @@ namespace Snake.Code
     {
         uint sideCellCount;
         GridCell[] cells;
-        uint cellCount;
+        public uint cellCount;
 
         public Grid(uint sideCellCount)
         {
@@ -43,6 +43,21 @@ namespace Snake.Code
         public bool ContainsAt(Position p, CellContent content)
         {
             return GetCellAt(p).content == content;
+        }
+
+        public void WrapPositionToGrid(ref Position position)
+        {
+            if (position.X < 0)
+                position.X += (int)cellCount;
+
+            if (position.Y < 0)
+                position.Y += (int)cellCount;
+
+            if (position.X > cellCount)
+                position.X -= (int)cellCount;
+
+            if (position.Y > cellCount)
+                position.Y -= (int)cellCount;
         }
     }
 }

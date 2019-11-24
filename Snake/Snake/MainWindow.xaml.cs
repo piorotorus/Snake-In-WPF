@@ -31,7 +31,7 @@ namespace Snake
             KeyDown += new KeyEventHandler(OnButtonKeyDown);
 
             grid = new Grid(10);
-            snake = new SnakeEntity(new Position(0, 0));
+            snake = new SnakeEntity(new Position(0, 0), grid);
         }
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
