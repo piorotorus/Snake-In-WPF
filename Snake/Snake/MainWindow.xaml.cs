@@ -119,5 +119,15 @@ public partial class MainWindow : Window
                     throw new Exception("invalid cell contents");
             }
         }
+
+        private void StartGameClick(object sender, RoutedEventArgs e)
+        {
+            //Start new game
+        }
+        private void ExitGameClick(object sender,RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+      
     }
 }
