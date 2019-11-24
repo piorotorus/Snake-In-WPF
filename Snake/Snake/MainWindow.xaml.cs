@@ -36,7 +36,6 @@ namespace Snake
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
         {
-            Position newHeadPosition;
             Direction snakeDirection = Direction.None;
 
             switch (e.Key)
@@ -58,12 +57,12 @@ namespace Snake
                     break;
             }
 
-            newHeadPosition = snake.Move(snakeDirection);
-            HandleSnakeLogic(ref newHeadPosition);
+            HandleSnakeLogic(snakeDirection);
         }
 
-        private void HandleSnakeLogic(ref Position snakeHead)
+        private void HandleSnakeLogic(Direction snakeDirection)
         {
+            var snakeHead = snake.Move(snakeDirection);
             var cellContents = grid.GetCellAt(snakeHead).content;
 
             switch (cellContents)
