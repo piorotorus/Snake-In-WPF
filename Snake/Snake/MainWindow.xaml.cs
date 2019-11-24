@@ -27,6 +27,7 @@ public partial class MainWindow : Window
         Grid grid;
         Direction currentSnakeDirection = Direction.Right;
         int score = 0;
+        int cellSize = 20;
 
         public MainWindow()
         {
@@ -43,6 +44,27 @@ public partial class MainWindow : Window
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += new EventHandler(Tick);
             timer.Start();
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            Color blue = new Color();
+            blue.B = 255;
+            DrawSquare(snake.GetHeadPosition(), blue);
+        }
+
+        private void DrawSquare(Position position, Color color)
+        {
+            Rectangle rect = new Rectangle
+            {
+                Width = cellSize,
+                Height = cellSize,
+                Fill = new SolidColorBrush(color)
+            };
+
+            GameArea.Children.Add(rect);
+            Canvas.SetTop(rect, position.Y);
+            Canvas.SetLeft(rect, position.X);
         }
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
