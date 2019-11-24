@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Grid.cs" />
     <Compile Include="Code\Position.cs" />
     <Compile Include="Code\SnakeEntity.cs" />
     <Compile Include="MainWindow.xaml.cs">

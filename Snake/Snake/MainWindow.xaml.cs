@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Grid = Snake.Code.Grid;
 
 namespace Snake
@@ -24,40 +25,51 @@ namespace Snake
     {
         SnakeEntity snake;
         Grid grid;
+        Direction currentSnakeDirection = Direction.Right;
 
         public MainWindow()
         {
             InitializeComponent();
             KeyDown += new KeyEventHandler(OnButtonKeyDown);
 
-            grid = new Grid(10);
-            snake = new SnakeEntity(new Position(0, 0), grid);
+            uint sideCellCount = 10;
+            grid = new Grid(sideCellCount);
+            Position spawnPoint = new Position((int)sideCellCount/2, (int)sideCellCount/2);
+            snake = new SnakeEntity(spawnPoint, grid);
+            // PaintSnake(spawnPoint);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += new EventHandler(Tick);
+            timer.Start();
         }
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
         {
-            Direction snakeDirection = Direction.None;
-
             switch (e.Key)
             {
                 case Key.Down:
-                    snakeDirection = Direction.Down;
+                    currentSnakeDirection = Direction.Down;
                     break;
 
                 case Key.Up:
-                    snakeDirection = Direction.Up;
+                    currentSnakeDirection = Direction.Up;
                     break;
 
                 case Key.Left:
-                    snakeDirection = Direction.Left;
+                    currentSnakeDirection = Direction.Left;
                     break;
 
                 case Key.Right:
-                    snakeDirection = Direction.Right;
+                    currentSnakeDirection = Direction.Right;
                     break;
             }
+        }
 
-            HandleSnakeLogic(snakeDirection);
+        private void Tick(object sender, EventArgs e)
+        {
+            HandleSnakeLogic(currentSnakeDirection);
+            // PaintSnake();
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
