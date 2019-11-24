@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snake.Code;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace Snake
     /// </summary>
     public partial class App : Application
     {
+        SnakeEntity snake = new SnakeEntity(new Position(0, 0));
     }
 }
