@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Snake.Code
 {
+    public enum Direction
+    {
+        None,
+        Left,
+        Right,
+        Up,
+        Down
+    }
+
     public class SnakeEntity
     {
         List<Position> parts;
@@ -16,15 +25,39 @@ namespace Snake.Code
             parts.Add(spawnPoint);
         }
 
+        public Position GetHeadPosition()
+        {
+            return parts[0];
+        }
+
         public void Grow()
         {
             var snakeTail = parts[parts.Count - 1];
             parts.Add(snakeTail);
         }
 
-        public void Move()
+        public Position Move(Direction dir)
         {
-            throw new NotImplementedException();
+            switch (dir)
+            {
+                case Direction.Left:
+
+                    break;
+
+                case Direction.Right:
+                    break;
+
+                case Direction.Up:
+                    break;
+
+                case Direction.Down:
+                    break;
+
+                default:
+                    throw new Exception("invalid snake move direction");               
+            }
+
+            return GetHeadPosition();
         }
     }
 }

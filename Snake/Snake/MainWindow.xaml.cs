@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snake.Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Grid = Snake.Code.Grid;
 
 namespace Snake
 {
@@ -20,9 +22,66 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
+        SnakeEntity snake;
+        Grid grid;
+
         public MainWindow()
         {
             InitializeComponent();
+            KeyDown += new KeyEventHandler(OnButtonKeyDown);
+
+            grid = new Grid(10);
+            snake = new SnakeEntity(new Position(0, 0));
+        }
+
+        private void OnButtonKeyDown(object sender, KeyEventArgs e)
+        {
+            Position newHeadPosition;
+            Direction snakeDirection = Direction.None;
+
+            switch (e.Key)
+            {
+                case Key.Down:
+                    snakeDirection = Direction.Down;
+                    break;
+
+                case Key.Up:
+                    snakeDirection = Direction.Up;
+                    break;
+
+                case Key.Left:
+                    snakeDirection = Direction.Left;
+                    break;
+
+                case Key.Right:
+                    snakeDirection = Direction.Right;
+                    break;
+            }
+
+            newHeadPosition = snake.Move(snakeDirection);
+            HandleSnakeLogic(ref newHeadPosition);
+        }
+
+        private void HandleSnakeLogic(ref Position snakeHead)
+        {
+            var cellContents = grid.GetCellAt(snakeHead).content;
+
+            switch (cellContents)
+            {
+                case CellContent.Empty:
+                    break;
+
+                case CellContent.Apple:
+                    snake.Grow();
+                    break;
+
+                case CellContent.Spikes:
+                    throw new NotImplementedException();
+                    break;
+
+                default:
+                    throw new Exception("invalid cell contents");
+            }
         }
     }
 }

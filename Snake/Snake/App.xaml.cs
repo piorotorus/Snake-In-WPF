@@ -14,6 +14,6 @@ namespace Snake
     /// </summary>
     public partial class App : Application
     {
-        SnakeEntity snake = new SnakeEntity(new Position(0, 0));
+       
     }
 }
