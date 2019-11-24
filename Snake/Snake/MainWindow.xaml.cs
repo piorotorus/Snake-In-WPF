@@ -18,14 +18,15 @@ using Grid = Snake.Code.Grid;
 
 namespace Snake
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
     {
         SnakeEntity snake;
         Grid grid;
         Direction currentSnakeDirection = Direction.Right;
+        int score = 0;
 
         public MainWindow()
         {
@@ -70,6 +71,7 @@ namespace Snake
         {
             HandleSnakeLogic(currentSnakeDirection);
             // PaintSnake();
+            // Display Score
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
@@ -84,6 +86,7 @@ namespace Snake
 
                 case CellContent.Apple:
                     snake.Grow();
+                    score++;
                     break;
 
                 case CellContent.Spikes:
