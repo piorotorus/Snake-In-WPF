@@ -48,16 +48,16 @@ namespace Snake.Code
         public void WrapPositionToGrid(ref Position position)
         {
             if (position.X < 0)
-                position.X += (int)cellCount;
+                position.X += (int)sideCellCount;
 
             if (position.Y < 0)
-                position.Y += (int)cellCount;
+                position.Y += (int)sideCellCount;
 
-            if (position.X > cellCount)
-                position.X -= (int)cellCount;
+            if (position.X > sideCellCount)
+                position.X -= (int)sideCellCount;
 
-            if (position.Y > cellCount)
-                position.Y -= (int)cellCount;
+            if (position.Y > sideCellCount)
+                position.Y -= (int)sideCellCount;
         }
     }
 }
