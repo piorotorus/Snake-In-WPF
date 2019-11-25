@@ -13,14 +13,16 @@
 
 
 
-        <Grid Height="90" VerticalAlignment="Top" Background="Black">
-
+        <Grid Height="90" VerticalAlignment="Top" >
+            <Grid.Background>
+                <ImageBrush ImageSource="/Image/themeBackground.jpg" Opacity="1"></ImageBrush>
+            </Grid.Background>
             <TextBlock Text="Snake Game" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="45" FontFamily="Rundkursiv"  />
         </Grid>
-        <Button Margin="273,123,275,286" Height="60" Click="StartGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"  Content="Start" ></Button>
-        <Button Margin="273,193,275,216" Height="60" Style="{StaticResource RoundedButton}"  FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change Snake Color"  ></Button>
-        <Button Margin="273,263,275,146" Height="60"  Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change language"     ></Button>
-        <Button Margin="273,333,275,76"  Height="60"  Click="ExitGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate"  FontSize="22" FontWeight="Bold"  Content="Exit"   ></Button>
+        <Button Margin="273,123,275,286" Height="60" x:Name="StartButton" Click="StartGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"  Content="Start" ></Button>
+        <Button Margin="273,193,275,216" Height="60" x:Name="ChangeSnakeColorButton" Style="{StaticResource RoundedButton}"  FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change Snake Color"  ></Button>
+        <Button Margin="273,263,275,146" Height="60" x:Name="ChangeLanguageButton" Click="ChangeLanguageClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change language"     ></Button>
+        <Button Margin="273,333,275,76"  Height="60" x:Name="ExitButton" Click="ExitGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate"  FontSize="22" FontWeight="Bold"  Content="Exit"   ></Button>
 
         <Canvas Name="GameArea" ClipToBounds="True">
         </Canvas>

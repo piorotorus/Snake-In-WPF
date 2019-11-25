@@ -128,6 +128,23 @@ public partial class MainWindow : Window
         {
             System.Windows.Application.Current.Shutdown();
         }
+        private void ChangeLanguageClick(object sender, RoutedEventArgs e)
+        {
+            if ((string)ExitButton.Content == "Exit")
+            {
+                StartButton.Content = "Rozpocznij";
+                ExitButton.Content = "Wyjście";
+                ChangeLanguageButton.Content = "Zmień język";
+                ChangeSnakeColorButton.Content = "Zmień kolor węża";
+            }
+            else
+            {
+                StartButton.Content = "Start";
+                ExitButton.Content = "Exit";
+                ChangeLanguageButton.Content = "Change Language";
+                ChangeSnakeColorButton.Content = "Change Snake Color";
+            }
+        }
       
     }
 }
