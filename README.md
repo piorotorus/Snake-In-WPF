@@ -6,3 +6,8 @@ Wąż zrobiony będzie z kropek lub innych obiektów(do przemyslenia), a w kodzi
 Gra będzie zrobiona w WPF. 
 Możliwość zmiany trudności z czasem (przyśpieszanie poruszania).
 Proste Menu pozwalające zacząć gre od początku i zmianę ustawień
+
+To do:
+Kamil-zrobienie gry
+Piotr-zrobienie menu, komentarze xml
+wspólnie-testy jednostkowe
