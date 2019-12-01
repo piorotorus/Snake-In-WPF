@@ -26,46 +26,95 @@ namespace Snake
         Color[] SnakeColorArray = new Color[] {Color.FromArgb(0,1,0,1), Color.FromArgb(1,0,0,1) };
         SnakeEntity snake;
         Grid grid;
+        Rectangle[] displayCells;
         Direction currentSnakeDirection = Direction.Right;
         int score = 0;
-        int cellSize = 20;
+        int cellWidth = 20;
+        uint sideCellCount = 22;
+
+        readonly SolidColorBrush[] colorBrushes = new SolidColorBrush[]
+        {
+            new SolidColorBrush(Colors.White),
+            new SolidColorBrush(Colors.Black),
+            new SolidColorBrush(Colors.Green),
+            new SolidColorBrush(Colors.Red)
+        };
+
+        enum ColorPalette
+        {
+            WHITE = 0,
+            BLACK,
+            GREEN,
+            RED
+        }
+
+        SolidColorBrush GetColorBrush(ColorPalette color) {
+            return colorBrushes[(int)color];
+        }
 
         public MainWindow()
         {
             InitializeComponent();
             KeyDown += new KeyEventHandler(OnButtonKeyDown);
 
-            uint sideCellCount = 10;
             grid = new Grid(sideCellCount);
             Position spawnPoint = new Position((int)sideCellCount/2, (int)sideCellCount/2);
             snake = new SnakeEntity(spawnPoint, grid);
-            // PaintSnake(spawnPoint);
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Tick += new EventHandler(Tick);
+            GenerateCanvasCells();
+
+            Tick();
+            var timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
             timer.Start();
+        }
+
+        DispatcherTimer InitTimer(TimeSpan tickFrequency)
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = tickFrequency;
+            timer.Tick += new EventHandler(TickEvent);
+
+            return timer;
+        }
+
+        void GenerateCanvasCells()
+        {
+            var cellCount = sideCellCount * sideCellCount;
+            displayCells = new Rectangle[cellCount];
+
+            var defaultColor = new SolidColorBrush(Colors.Black);
+            var cellPosition = new Position();
+            for (var y = 0; y < sideCellCount; y++)
+            {
+                cellPosition.Y = y;
+                for (var x = 0; x < sideCellCount; x++)
+                {
+                    cellPosition.X = x;
+                    Rectangle rect = new Rectangle
+                    {
+                        Width = cellWidth,
+                        Height = cellWidth,
+                        Fill = defaultColor
+                    };
+
+                    Canvas.SetLeft(rect, cellPosition.X * cellWidth);
+                    Canvas.SetTop(rect, cellPosition.Y * cellWidth);
+
+                    displayCells[grid.GetIndexToCell(ref cellPosition)] = rect;
+                    GameArea.Children.Add(rect);
+                }
+            }
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            Color blue = new Color();
-            blue.B = 255;
-            DrawSquare(snake.GetHeadPosition(), blue);
+            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));
         }
 
-        private void DrawSquare(Position position, Color color)
+        private void SetCellColor(Position cellPosition, SolidColorBrush colorBrush)
         {
-            Rectangle rect = new Rectangle
-            {
-                Width = cellSize,
-                Height = cellSize,
-                Fill = new SolidColorBrush(color)
-            };
-
-            GameArea.Children.Add(rect);
-            Canvas.SetTop(rect, position.Y);
-            Canvas.SetLeft(rect, position.X);
+            var rect = displayCells[grid.GetIndexToCell(ref cellPosition)];
+            rect.Fill = colorBrush;
         }
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
@@ -73,28 +122,59 @@ namespace Snake
             switch (e.Key)
             {
                 case Key.Down:
+                case Key.S:
                     currentSnakeDirection = Direction.Down;
                     break;
 
                 case Key.Up:
+                case Key.W:
                     currentSnakeDirection = Direction.Up;
                     break;
 
                 case Key.Left:
+                case Key.A:
                     currentSnakeDirection = Direction.Left;
                     break;
 
                 case Key.Right:
+                case Key.D:
                     currentSnakeDirection = Direction.Right;
                     break;
             }
         }
 
-        private void Tick(object sender, EventArgs e)
+        private void TickEvent(object sender, EventArgs e)
+        {
+            Tick();
+        }
+
+        void Tick()
         {
             HandleSnakeLogic(currentSnakeDirection);
-            // PaintSnake();
+            PaintGrid();
+            PaintSnake();
             // Display Score
+        }
+
+        void PaintGrid()
+        {
+            Position p = new Position();
+
+            for (int y = 0; y < sideCellCount; y++)
+            {
+                p.Y = y;
+                for (byte x = 0; x < sideCellCount; x++)
+                {
+                    p.X = x;
+                    var color = Color.FromRgb((byte)((x * 6) + (y * 5)), (byte)((x * 3) + (y * 0)), (byte)((x * 1) + (y * 3)));
+                    SetCellColor(p, new SolidColorBrush(color));
+                }
+            }
+        }
+
+        void PaintSnake()
+        {
+            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
