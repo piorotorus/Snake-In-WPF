@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Grid = Snake.Code.Grid;
 
+
 namespace Snake
 {
     /// <summary>
@@ -23,7 +24,8 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        Color[] SnakeColorArray = new Color[] {Color.FromArgb(0,1,0,1), Color.FromArgb(1,0,0,1) };
+      
+        int snakeColorIndex = 0;
         SnakeEntity snake;
         Grid grid;
         Rectangle[] displayCells;
@@ -32,26 +34,7 @@ namespace Snake
         int cellWidth = 20;
         uint sideCellCount = 22;
 
-        readonly SolidColorBrush[] colorBrushes = new SolidColorBrush[]
-        {
-            new SolidColorBrush(Colors.White),
-            new SolidColorBrush(Colors.Black),
-            new SolidColorBrush(Colors.Green),
-            new SolidColorBrush(Colors.Red)
-        };
-
-        enum ColorPalette
-        {
-            WHITE = 0,
-            BLACK,
-            GREEN,
-            RED
-        }
-
-        SolidColorBrush GetColorBrush(ColorPalette color) {
-            return colorBrushes[(int)color];
-        }
-
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -108,7 +91,7 @@ namespace Snake
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));
+            SetCellColor(snake.GetHeadPosition(), SnakeColor.GetColorBrush(SnakeColor.ColorPalette.GREEN));
         }
 
         private void SetCellColor(Position cellPosition, SolidColorBrush colorBrush)
@@ -171,12 +154,12 @@ namespace Snake
                 }
             }
         }
-
+       
         void PaintSnake()
         {
-            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));
+           SetCellColor(snake.GetHeadPosition(), SnakeColor.colorBrushes[snakeColorIndex]);
         }
-
+        
         private void HandleSnakeLogic(Direction snakeDirection)
         {
             var snakeHead = snake.Move(snakeDirection);
@@ -214,6 +197,19 @@ namespace Snake
             System.Windows.Application.Current.Shutdown();
         }
 
+        void ChangeSnakeColorClick(object sender, RoutedEventArgs e)
+        {
+            if (snakeColorIndex == SnakeColor.colorBrushes.Length-1)
+            {
+                snakeColorIndex = 0;
+            }
+            else
+            {
+                snakeColorIndex++;
+            }
+            
+            ChangeSnakeColorButton.Foreground = SnakeColor.colorBrushes[snakeColorIndex];
+        }
      
 
         void ChangeLanguageClick(object sender, RoutedEventArgs e)
