@@ -9,7 +9,11 @@
    
     <Grid >
         
+<<<<<<< HEAD
         <Grid Name="Menu" Visibility="Visible">
+=======
+        <Grid x:Name="Menu" Visibility="Collapsed">
+>>>>>>> ccf203643ae1112bbdddf216bfc9ad609d9d9467
         <Image Source="/Image/snake1.jpg" HorizontalAlignment="Left" Height="400" Width="400" Margin="0,95,396,0" />
         <Image Source="/Image/snake2.jpg" HorizontalAlignment="Right" Height="400" Width="400" Margin="396,95,0,0" RenderTransformOrigin="1.179,0.54" />
         <Grid Height="90" VerticalAlignment="Top" >
@@ -22,9 +26,16 @@
         <Button Margin="273,193,275,216" Height="60" x:Name="ChangeSnakeColorButton" Click="ChangeSnakeColorClick" Style="{StaticResource RoundedButton}"  FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change Snake Color"  ></Button>
         <Button Margin="273,263,275,146" Height="60" x:Name="ChangeLanguageButton" Click="ChangeLanguageClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change language"     ></Button>
         <Button Margin="273,333,275,76"  Height="60" x:Name="ExitButton" Click="ExitGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate"  FontSize="22" FontWeight="Bold"  Content="Exit"   ></Button>
+      
+        
         </Grid>
         
         <Canvas Name="GameArea" ClipToBounds="True" Visibility="Collapsed">
         </Canvas>
+<<<<<<< HEAD
+=======
+
+        
+>>>>>>> ccf203643ae1112bbdddf216bfc9ad609d9d9467
     </Grid>
 </Window>
