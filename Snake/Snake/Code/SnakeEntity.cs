@@ -17,7 +17,7 @@ namespace Snake.Code
 
     public class SnakeEntity
     {
-        List<Position> parts;
+        public readonly List<Position> parts;
         Grid grid;
 
         public SnakeEntity(Position spawnPoint, Grid grid)
@@ -49,7 +49,7 @@ namespace Snake.Code
 
         void UpdatePartsPositionsAccordingToHead()
         {
-            for (var i = parts.Count - 1; i > 0; ++i)
+            for (var i = parts.Count - 1; i > 0; --i)
                 parts[i] = parts[i - 1];
 
         }
