@@ -193,7 +193,11 @@ namespace Snake
         void PaintSnake()
         {
             foreach (var snakePartPosition in snake.parts)
+<<<<<<< HEAD
             SetCellColor(snakePartPosition, SnakeColor.colorBrushes[snakeColorIndex]);
+=======
+                SetCellColor(snakePartPosition, GetColorBrush(ColorPalette.GREEN));
+>>>>>>> 432c8bffe109e2c5ef8bec44c9e2f340c4688b50
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
@@ -208,10 +212,11 @@ namespace Snake
                     break;
 
                 case CellContent.Apple:
+                    score += 100;
                     snake.Grow();
                     var snakeHeadPosition = snake.GetHeadPosition();
                     grid.SetCellContent(ref snakeHeadPosition, CellContent.Empty);
-                    score += 100;
+                    PlantApple();
                     break;
 
                 case CellContent.Spikes:

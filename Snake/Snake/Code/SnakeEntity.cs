@@ -51,7 +51,6 @@ namespace Snake.Code
         {
             for (var i = parts.Count - 1; i > 0; --i)
                 parts[i] = parts[i - 1];
-
         }
 
         public Position Move(Direction dir)
@@ -81,8 +80,8 @@ namespace Snake.Code
             }
 
             grid.WrapPositionToGrid(ref newHeadPosition);
-            SetHeadPosition(newHeadPosition);
             UpdatePartsPositionsAccordingToHead();
+            SetHeadPosition(newHeadPosition);
 
             return GetHeadPosition();
         }
