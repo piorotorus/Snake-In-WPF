@@ -210,7 +210,7 @@ namespace Snake
         void PaintSnake()
         {
             foreach (var snakePartPosition in snake.parts)
-            SetCellColor(snakePartPosition, GetColorBrush(ColorPalette.GREEN));
+                SetCellColor(snakePartPosition, GetColorBrush(ColorPalette.GREEN));
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
@@ -225,10 +225,11 @@ namespace Snake
                     break;
 
                 case CellContent.Apple:
+                    score += 100;
                     snake.Grow();
                     var snakeHeadPosition = snake.GetHeadPosition();
                     grid.SetCellContent(ref snakeHeadPosition, CellContent.Empty);
-                    score += 100;
+                    PlantApple();
                     break;
 
                 case CellContent.Spikes:
