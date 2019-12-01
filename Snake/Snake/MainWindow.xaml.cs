@@ -203,12 +203,10 @@ namespace Snake
 
         void StartGameClick(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
+
             Menu.Visibility = Visibility.Collapsed;
             GameArea.Visibility = Visibility.Visible;
-=======
-        
->>>>>>> ccf203643ae1112bbdddf216bfc9ad609d9d9467
+
         }
 
         void ExitGameClick(object sender,RoutedEventArgs e)
@@ -216,10 +214,7 @@ namespace Snake
             System.Windows.Application.Current.Shutdown();
         }
 
-        void ChangeSnakeColorClick()
-        {  
-            
-        }
+     
 
         void ChangeLanguageClick(object sender, RoutedEventArgs e)
         {
