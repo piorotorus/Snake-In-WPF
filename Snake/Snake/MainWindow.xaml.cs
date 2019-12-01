@@ -122,7 +122,7 @@ public partial class MainWindow : Window
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
-            //Start new game
+        
         }
         private void ExitGameClick(object sender,RoutedEventArgs e)
         {
