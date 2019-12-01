@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Code\Grid.cs" />
     <Compile Include="Code\Position.cs" />
+    <Compile Include="Code\SnakeColor.cs" />
     <Compile Include="Code\SnakeEntity.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
