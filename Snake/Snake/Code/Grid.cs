@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Snake.Code
 {
@@ -27,13 +29,18 @@ namespace Snake.Code
         public Grid(uint sideCellCount)
         {
             this.sideCellCount = sideCellCount;
-            this.cellCount = sideCellCount * sideCellCount;
+            cellCount = sideCellCount * sideCellCount;
             cells = new GridCell[cellCount];
+        }
+
+        public int GetIndexToCell(ref Position p)
+        {
+            return (int)(p.Y * sideCellCount + p.X);
         }
 
         public ref GridCell GetCellAt(Position p)
         {
-            var gridIndex = p.Y*sideCellCount + p.X;
+            var gridIndex = GetIndexToCell(ref p);
             if (gridIndex < 0 || gridIndex >= cellCount)
                 throw new Exception("invalid grid index");
 

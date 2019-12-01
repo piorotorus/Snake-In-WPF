@@ -24,8 +24,8 @@ namespace Snake.Code
         {
             if (grid == null)
                 throw new Exception("grid is null");
-            this.grid = grid;
 
+            this.grid = grid;
             grid.WrapPositionToGrid(ref spawnPoint);
             parts = new List<Position>();
             parts.Add(spawnPoint);
@@ -49,10 +49,10 @@ namespace Snake.Code
 
         void UpdatePartsPositionsAccordingToHead()
         {
-            for (var i = parts.Count-1; i > 0; ++i)
+            for (var i = parts.Count - 1; i > 0; ++i)
                 parts[i] = parts[i - 1];
-            
-        } 
+
+        }
 
         public Position Move(Direction dir)
         {
@@ -77,7 +77,7 @@ namespace Snake.Code
                     break;
 
                 default:
-                    throw new Exception("invalid snake move direction");               
+                    throw new Exception("invalid snake move direction");
             }
 
             grid.WrapPositionToGrid(ref newHeadPosition);
