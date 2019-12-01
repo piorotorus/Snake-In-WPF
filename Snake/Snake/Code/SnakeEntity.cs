@@ -69,11 +69,11 @@ namespace Snake.Code
                     break;
 
                 case Direction.Up:
-                    newHeadPosition.Y++;
+                    newHeadPosition.Y--;
                     break;
 
                 case Direction.Down:
-                    newHeadPosition.Y--;
+                    newHeadPosition.Y++;
                     break;
 
                 default:

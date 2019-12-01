@@ -63,7 +63,7 @@ namespace Snake
             GenerateCanvasCells();
 
             Tick();
-            var timer = InitTimer(new TimeSpan(0, 0, 0, 0, 500));
+            var timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
             timer.Start();
         }
 
@@ -121,18 +121,22 @@ namespace Snake
             switch (e.Key)
             {
                 case Key.Down:
+                case Key.S:
                     currentSnakeDirection = Direction.Down;
                     break;
 
                 case Key.Up:
+                case Key.W:
                     currentSnakeDirection = Direction.Up;
                     break;
 
                 case Key.Left:
+                case Key.A:
                     currentSnakeDirection = Direction.Left;
                     break;
 
                 case Key.Right:
+                case Key.D:
                     currentSnakeDirection = Direction.Right;
                     break;
             }
