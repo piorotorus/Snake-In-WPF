@@ -60,10 +60,10 @@ namespace Snake.Code
             if (position.Y < 0)
                 position.Y += (int)sideCellCount;
 
-            if (position.X > sideCellCount)
+            if (position.X > sideCellCount-1)
                 position.X -= (int)sideCellCount;
 
-            if (position.Y > sideCellCount)
+            if (position.Y > sideCellCount-1)
                 position.Y -= (int)sideCellCount;
         }
     }
