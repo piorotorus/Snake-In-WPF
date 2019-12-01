@@ -9,7 +9,7 @@
    
     <Grid >
 
-      <Grid x:Name="Menu" Visibility="Collapsed">
+      <Grid x:Name="Menu" Visibility="Visible">
 
                 <Image Source="/Image/snake1.jpg" HorizontalAlignment="Left" Height="400" Width="400" Margin="0,95,396,0" />
                 <Image Source="/Image/snake2.jpg" HorizontalAlignment="Right" Height="400" Width="400" Margin="396,95,0,0" RenderTransformOrigin="1.179,0.54" />
@@ -27,7 +27,7 @@
 
             </Grid>
         <Grid >
-            <Canvas Name="GameArea" ClipToBounds="True" Visibility="Visible">
+            <Canvas Name="GameArea" ClipToBounds="True" Visibility="Collapsed">
             </Canvas>
         </Grid>
     </Grid>
