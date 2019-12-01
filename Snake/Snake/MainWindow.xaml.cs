@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +16,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Grid = Snake.Code.Grid;
 
-
 namespace Snake
 {
     /// <summary>
@@ -25,7 +23,6 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-
         int snakeColorIndex = 0;
         SnakeEntity snake;
         Grid grid;
@@ -36,6 +33,7 @@ namespace Snake
         uint sideCellCount = 22;
         DispatcherTimer timer;
 
+    
         public MainWindow()
         {
             InitializeComponent();
@@ -49,8 +47,6 @@ namespace Snake
 
             timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
         }
-        
-
 
         void StartGame()
         {
@@ -161,7 +157,7 @@ namespace Snake
         void PaintGrid()
         {
             Position p = new Position();
-            SolidColorBrush brushColor =SnakeColor.GetColorBrush(SnakeColor.ColorPalette.WHITE);
+            SolidColorBrush brushColor = SnakeColor.GetColorBrush(SnakeColor.ColorPalette.WHITE);
 
             for (int y = 0; y < sideCellCount; y++)
             {
@@ -186,21 +182,18 @@ namespace Snake
                             brushColor = SnakeColor.GetColorBrush(SnakeColor.ColorPalette.BLACK);
                             break;
                     }
-                    
+
                     SetCellColor(p, brushColor);
                 }
             }
         }
-       
+
         void PaintSnake()
         {
-
-           SetCellColor(snake.GetHeadPosition(), SnakeColor.colorBrushes[snakeColorIndex]);
-
-            foreach (var snakePartPosition in snake.parts) ;
-
+            foreach (var snakePartPosition in snake.parts)
+                SetCellColor(snakePartPosition, SnakeColor.colorBrushes[snakeColorIndex]);
         }
-        
+
         private void HandleSnakeLogic(Direction snakeDirection)
         {
             var snakeHead = snake.Move(snakeDirection);
@@ -237,7 +230,7 @@ namespace Snake
             StartGame();
         }
 
-        void ExitGameClick(object sender,RoutedEventArgs e)
+        void ExitGameClick(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
@@ -245,7 +238,6 @@ namespace Snake
         void ChangeSnakeColorClick(object sender, RoutedEventArgs e)
         {
             if (snakeColorIndex == SnakeColor.colorBrushes.Length - 1)
-
             {
                 snakeColorIndex = 0;
             }
@@ -254,17 +246,14 @@ namespace Snake
                 snakeColorIndex++;
             }
 
-            
             ChangeSnakeColorButton.Foreground = SnakeColor.colorBrushes[snakeColorIndex];
         }
-     
 
         void MenuButttonClick(object sender, RoutedEventArgs e)
         {
             Menu.Visibility = Visibility.Visible;
             GameAreaGrid.Visibility = Visibility.Collapsed;
         }
-
 
         void ChangeLanguageClick(object sender, RoutedEventArgs e)
         {
@@ -274,7 +263,7 @@ namespace Snake
                 ExitButton.Content = "Wyjście";
                 ChangeLanguageButton.Content = "Zmień język";
                 ChangeSnakeColorButton.Content = "Zmień kolor węża";
-               
+
             }
             else
             {
@@ -282,9 +271,7 @@ namespace Snake
                 ExitButton.Content = "Exit";
                 ChangeLanguageButton.Content = "Change Language";
                 ChangeSnakeColorButton.Content = "Change Snake Color";
-
             }
         }
     }
-    
 }
