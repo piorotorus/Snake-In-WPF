@@ -193,11 +193,11 @@ namespace Snake
         void PaintSnake()
         {
             foreach (var snakePartPosition in snake.parts)
-<<<<<<< HEAD
+
             SetCellColor(snakePartPosition, SnakeColor.colorBrushes[snakeColorIndex]);
-=======
-                SetCellColor(snakePartPosition, GetColorBrush(ColorPalette.GREEN));
->>>>>>> 432c8bffe109e2c5ef8bec44c9e2f340c4688b50
+
+   
+
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
