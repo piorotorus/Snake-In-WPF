@@ -31,6 +31,7 @@ namespace Snake
         int score = 0;
         int cellWidth = 20;
         uint sideCellCount = 22;
+        DispatcherTimer timer;
 
         readonly SolidColorBrush[] colorBrushes = new SolidColorBrush[]
         {
@@ -63,9 +64,25 @@ namespace Snake
 
             GenerateCanvasCells();
 
+            timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
+        }
+
+        void StartGame()
+        {
+            // TODO: generate apples (discard positions on snake, spikes or other apples) and spike walls
+            PlantApple();
             Tick();
-            var timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
             timer.Start();
+        }
+
+        void PlantApple()
+        {
+            var applePosition = new Position();
+            Random randomNumberGenerator = new Random();
+            applePosition.X = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+            applePosition.Y = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+
+            grid.SetCellContent(ref applePosition, CellContent.Apple);
         }
 
         DispatcherTimer InitTimer(TimeSpan tickFrequency)
@@ -159,6 +176,7 @@ namespace Snake
         void PaintGrid()
         {
             Position p = new Position();
+            SolidColorBrush brushColor = GetColorBrush(ColorPalette.WHITE);
 
             for (int y = 0; y < sideCellCount; y++)
             {
@@ -166,15 +184,33 @@ namespace Snake
                 for (byte x = 0; x < sideCellCount; x++)
                 {
                     p.X = x;
-                    var color = Color.FromRgb((byte)((x * 6) + (y * 5)), (byte)((x * 3) + (y * 0)), (byte)((x * 1) + (y * 3)));
-                    SetCellColor(p, new SolidColorBrush(color));
+                    var cellContent = grid.GetCellAt(p).content;
+
+                    switch (cellContent)
+                    {
+                        case CellContent.Empty:
+                            var color = Color.FromRgb((byte)((x * 6) + (y * 5)), (byte)((x * 3) + (y * 0)), (byte)((x * 1) + (y * 3)));
+                            brushColor = new SolidColorBrush(color);
+                            break;
+
+                        case CellContent.Apple:
+                            brushColor = GetColorBrush(ColorPalette.RED);
+                            break;
+
+                        case CellContent.Spikes:
+                            brushColor = GetColorBrush(ColorPalette.BLACK);
+                            break;
+                    }
+                    
+                    SetCellColor(p, brushColor);
                 }
             }
         }
 
         void PaintSnake()
         {
-            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));
+            foreach (var snakePartPosition in snake.parts)
+            SetCellColor(snakePartPosition, GetColorBrush(ColorPalette.GREEN));
         }
 
         private void HandleSnakeLogic(Direction snakeDirection)
@@ -185,11 +221,14 @@ namespace Snake
             switch (cellContents)
             {
                 case CellContent.Empty:
+                    score++;
                     break;
 
                 case CellContent.Apple:
                     snake.Grow();
-                    score++;
+                    var snakeHeadPosition = snake.GetHeadPosition();
+                    grid.SetCellContent(ref snakeHeadPosition, CellContent.Empty);
+                    score += 100;
                     break;
 
                 case CellContent.Spikes:
@@ -206,15 +245,13 @@ namespace Snake
 
             Menu.Visibility = Visibility.Collapsed;
             GameArea.Visibility = Visibility.Visible;
-
+            StartGame();
         }
 
         void ExitGameClick(object sender,RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
-
-     
 
         void ChangeLanguageClick(object sender, RoutedEventArgs e)
         {
@@ -233,7 +270,5 @@ namespace Snake
              
             }
         }
-
-    
     }
 }

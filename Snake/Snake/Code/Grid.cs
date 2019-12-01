@@ -52,6 +52,11 @@ namespace Snake.Code
             return GetCellAt(p).content == content;
         }
 
+        public void SetCellContent(ref Position p, CellContent newContent)
+        {
+            cells[GetIndexToCell(ref p)].content = newContent;
+        }
+
         public void WrapPositionToGrid(ref Position position)
         {
             if (position.X < 0)
