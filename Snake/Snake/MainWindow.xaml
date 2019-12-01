@@ -8,12 +8,10 @@
         Title="MainWindow" Height="550"  MinHeight="550" Width="820" MinWidth="820" ContentRendered="Window_ContentRendered">
    
     <Grid >
-        <Grid Visibility="Collapsed">
+        
+        <Grid Name="Menu" Visibility="Visible">
         <Image Source="/Image/snake1.jpg" HorizontalAlignment="Left" Height="400" Width="400" Margin="0,95,396,0" />
         <Image Source="/Image/snake2.jpg" HorizontalAlignment="Right" Height="400" Width="400" Margin="396,95,0,0" RenderTransformOrigin="1.179,0.54" />
-
-
-
         <Grid Height="90" VerticalAlignment="Top" >
             <Grid.Background>
                 <ImageBrush ImageSource="/Image/themeBackground.jpg" Opacity="1"></ImageBrush>
@@ -21,12 +19,12 @@
             <TextBlock Text="Snake Game" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="45" FontFamily="Rundkursiv"  />
         </Grid>
         <Button Margin="273,123,275,286" Height="60" x:Name="StartButton" Click="StartGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"  Content="Start" ></Button>
-        <Button Margin="273,193,275,216" Height="60" x:Name="ChangeSnakeColorButton" Style="{StaticResource RoundedButton}"  FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change Snake Color"  ></Button>
+        <Button Margin="273,193,275,216" Height="60" x:Name="ChangeSnakeColorButton" Click="ChangeSnakeColorClick" Style="{StaticResource RoundedButton}"  FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change Snake Color"  ></Button>
         <Button Margin="273,263,275,146" Height="60" x:Name="ChangeLanguageButton" Click="ChangeLanguageClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change language"     ></Button>
         <Button Margin="273,333,275,76"  Height="60" x:Name="ExitButton" Click="ExitGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate"  FontSize="22" FontWeight="Bold"  Content="Exit"   ></Button>
         </Grid>
-        <Canvas Name="GameArea" ClipToBounds="True">
+        
+        <Canvas Name="GameArea" ClipToBounds="True" Visibility="Collapsed">
         </Canvas>
-
     </Grid>
 </Window>

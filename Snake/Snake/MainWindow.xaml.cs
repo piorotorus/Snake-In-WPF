@@ -18,11 +18,12 @@ using Grid = Snake.Code.Grid;
 
 namespace Snake
 {
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
+        Color[] SnakeColorArray = new Color[] {Color.FromArgb(0,1,0,1), Color.FromArgb(1,0,0,1) };
         SnakeEntity snake;
         Grid grid;
         Direction currentSnakeDirection = Direction.Right;
@@ -120,31 +121,40 @@ public partial class MainWindow : Window
             }
         }
 
-        private void StartGameClick(object sender, RoutedEventArgs e)
+        void StartGameClick(object sender, RoutedEventArgs e)
         {
-            //Start new game
+            Menu.Visibility = Visibility.Collapsed;
+            GameArea.Visibility = Visibility.Visible;
         }
-        private void ExitGameClick(object sender,RoutedEventArgs e)
+
+        void ExitGameClick(object sender,RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
-        private void ChangeLanguageClick(object sender, RoutedEventArgs e)
+
+        void ChangeSnakeColorClick()
+        {  
+            
+        }
+
+        void ChangeLanguageClick(object sender, RoutedEventArgs e)
         {
             if ((string)ExitButton.Content == "Exit")
             {
                 StartButton.Content = "Rozpocznij";
                 ExitButton.Content = "Wyjście";
                 ChangeLanguageButton.Content = "Zmień język";
-                ChangeSnakeColorButton.Content = "Zmień kolor węża";
+               
             }
             else
             {
                 StartButton.Content = "Start";
                 ExitButton.Content = "Exit";
                 ChangeLanguageButton.Content = "Change Language";
-                ChangeSnakeColorButton.Content = "Change Snake Color";
+             
             }
         }
-      
+
+    
     }
 }
