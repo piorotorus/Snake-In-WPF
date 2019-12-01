@@ -107,7 +107,7 @@ namespace Snake
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));
+            SetCellColor(snake.GetHeadPosition(), GetColorBrush(ColorPalette.GREEN));d
         }
 
         private void SetCellColor(Position cellPosition, SolidColorBrush colorBrush)
