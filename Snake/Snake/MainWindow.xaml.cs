@@ -29,7 +29,7 @@ namespace Snake
         Rectangle[] displayCells;
         Direction currentSnakeDirection = Direction.Right;
         int score = 0;
-        int cellWidth = 20;
+        double cellWidth = 20f;
         uint sideCellCount = 22;
         DispatcherTimer timer;
 
@@ -37,6 +37,7 @@ namespace Snake
         public MainWindow()
         {
             InitializeComponent();
+            GameAreaGrid.SizeChanged += HandleSizeChange;
             KeyDown += new KeyEventHandler(OnButtonKeyDown);
 
             grid = new Grid(sideCellCount);
@@ -188,7 +189,39 @@ namespace Snake
             }
         }
 
-        void PaintSnake()
+    void HandleSizeChange(object sender, SizeChangedEventArgs args)
+    {
+        Canvas canvas = GameAreaGrid.FindName("GameArea") as Canvas;
+        if (canvas == null)
+            throw new Exception("canvas not found");
+
+        var newCanvasWidth = Math.Ceiling(Math.Min(GameAreaGrid.ActualWidth, GameAreaGrid.ActualHeight));
+        canvas.Width = newCanvasWidth;
+        canvas.Height = newCanvasWidth;
+
+        cellWidth = newCanvasWidth / sideCellCount;
+        var cellPosition = new Position();
+
+        for (var y = 0; y < sideCellCount; y++)
+        {
+            cellPosition.Y = y;
+            for (var x = 0; x < sideCellCount; x++)
+            {
+                cellPosition.X = x;
+                var cellIndex = grid.GetIndexToCell(ref cellPosition);
+                var cell = displayCells[cellIndex];
+                cell.Width = cellWidth;
+                cell.Height = cellWidth;
+
+                Canvas.SetLeft(cell, cellPosition.X * cellWidth);
+                Canvas.SetTop(cell, cellPosition.Y * cellWidth);
+            }
+        }
+
+        Console.WriteLine(cellWidth);
+    }
+        
+    void PaintSnake()
         {
             foreach (var snakePartPosition in snake.parts)
                 SetCellColor(snakePartPosition, SnakeColor.colorBrushes[snakeColorIndex]);
@@ -226,7 +259,7 @@ namespace Snake
         {
 
             Menu.Visibility = Visibility.Collapsed;
-            GameAreaGrid.Visibility = Visibility.Visible;
+            GameScreen.Visibility = Visibility.Visible;
             StartGame();
         }
 
@@ -263,7 +296,6 @@ namespace Snake
                 ExitButton.Content = "Wyjście";
                 ChangeLanguageButton.Content = "Zmień język";
                 ChangeSnakeColorButton.Content = "Zmień kolor węża";
-
             }
             else
             {

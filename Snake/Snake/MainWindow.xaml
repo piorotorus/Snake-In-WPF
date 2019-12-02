@@ -28,10 +28,17 @@
             <Button Margin="290,280,290,171" Height="60" x:Name="ChangeLanguageButton" Click="ChangeLanguageClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold" Content="Change language"     />
             <Button Margin="290,350,290,101" Height="60" x:Name="ExitButton" Click="ExitGameClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate"  FontSize="22" FontWeight="Bold"  Content="Exit"   />
         </Grid>
-        <Grid x:Name="GameAreaGrid" Visibility="Collapsed">
-            <Button Margin="300,10,300,450" Height="40" Width="200" x:Name="MenuButton" Click="MenuButttonClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"  Content="Menu"/>
-            <Canvas Height="450" Width="450"  Name="GameArea" ClipToBounds="True"  Margin="182,61,180,8"   />
-
+        <Grid x:Name="GameScreen" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <Grid Background="CadetBlue">
+                <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="200" x:Name="MenuButton" Click="MenuButttonClick" Style="{StaticResource RoundedButton}" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"  Content="Menu"/>
+            </Grid>
+            <Grid Grid.Row="2" x:Name="GameAreaGrid" Background="Black">
+                <Canvas Name="GameArea" Background="AliceBlue"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
