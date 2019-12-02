@@ -122,22 +122,26 @@ namespace Snake
             {
                 case Key.Down:
                 case Key.S:
-                    currentSnakeDirection = Direction.Down;
+                    if (currentSnakeDirection != Direction.Up)
+                        currentSnakeDirection = Direction.Down;
                     break;
 
                 case Key.Up:
                 case Key.W:
-                    currentSnakeDirection = Direction.Up;
+                    if (currentSnakeDirection != Direction.Down)
+                        currentSnakeDirection = Direction.Up;
                     break;
 
                 case Key.Left:
                 case Key.A:
-                    currentSnakeDirection = Direction.Left;
+                    if (currentSnakeDirection != Direction.Right)
+                        currentSnakeDirection = Direction.Left;
                     break;
 
                 case Key.Right:
                 case Key.D:
-                    currentSnakeDirection = Direction.Right;
+                    if (currentSnakeDirection != Direction.Left)
+                        currentSnakeDirection = Direction.Right;
                     break;
             }
         }
