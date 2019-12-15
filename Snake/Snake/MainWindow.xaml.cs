@@ -39,6 +39,7 @@ namespace Snake {
         }
 
         void StartGame() {
+            score = 0;
             PlantApple();
             Tick();
             timer.Start();

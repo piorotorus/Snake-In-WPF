@@ -20,8 +20,7 @@
             <summary>
             Set where is head of our Snake
             </summary>
-            <param name="position">Position which is head of our Snake</param>
-            <returns></returns>
+            <param name="position">Position which is head of our Snake</param>  
         </member>
     </members>
 </doc>

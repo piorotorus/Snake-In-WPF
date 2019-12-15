@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{5AE4DEB9-BCCD-44F1-8A59-D1452E2E522D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeClassLibrary", "SnakeClassLibrary\SnakeClassLibrary.csproj", "{90584738-E4F3-44EF-B680-803D2E629099}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeClassLibrary", "SnakeClassLibrary\SnakeClassLibrary.csproj", "{90584738-E4F3-44EF-B680-803D2E629099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

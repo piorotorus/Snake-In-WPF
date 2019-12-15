@@ -47,21 +47,36 @@ namespace Snake.Code {
           parts[0] = position;
         }
 
+        /// <summary>
+        /// Get where is head of our Snake
+        /// </summary>
+        /// <returns>Return head part</returns>
         public Position GetHeadPosition() {
             return parts[0];
         }
 
+        /// <summary>
+        /// Increase Snake lenght
+        /// </summary>
         public void Grow() {
             var snakeTail = parts[parts.Count - 1];
             parts.Add(snakeTail);
         }
 
+        /// <summary>
+        /// Resetart Snake lenght
+        /// </summary>
         public void Reset() {
             parts.Clear();
             var newHead = spawnPoint;
             parts.Add(newHead);
         }
 
+        /// <summary>
+        /// Move our Snake through the map
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         public Position Move(Direction dir) {
             Position newHeadPosition = GetHeadPosition();
 
