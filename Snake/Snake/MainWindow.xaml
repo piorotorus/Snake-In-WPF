@@ -40,7 +40,7 @@
                 <Canvas Name="GameArea" Background="AliceBlue"/>
             </Grid>
             <Grid>
-                <TextBox Margin="600,0,0,0" x:Name="HighScore" Foreground="White"  Background="CadetBlue" VerticalAlignment="Center" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"></TextBox>
+                <TextBox Margin="600,15,30,15" x:Name="HighScore" BorderThickness="0" Foreground="White"  Background="CadetBlue" VerticalAlignment="Center" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"></TextBox>
             </Grid>
         </Grid>
     </Grid>
