@@ -50,6 +50,11 @@ namespace Snake.Code {
             cells[GetIndexToCell(ref p)].content = newContent;
         }
 
+        public void Reset() {
+            for (int i = 0; i < cells.Length; i++)
+                cells[i].content = CellContent.Empty;
+        }
+
         public void WrapPositionToGrid(ref Position position) {
             if (position.X < 0)
                 position.X += (int)sideCellCount;

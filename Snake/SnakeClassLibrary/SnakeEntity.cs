@@ -20,6 +20,7 @@ namespace Snake.Code {
     public class SnakeEntity {
         public readonly List<Position> parts;
         Grid grid;
+        Position spawnPoint;
 
         /// <summary>
         /// Method create first element of snake at start place
@@ -31,6 +32,8 @@ namespace Snake.Code {
                 throw new Exception("grid is null");
 
             this.grid = grid;
+            this.spawnPoint = spawnPoint;
+
             grid.WrapPositionToGrid(ref spawnPoint);
             parts = new List<Position>();
             parts.Add(spawnPoint);
@@ -51,6 +54,12 @@ namespace Snake.Code {
         public void Grow() {
             var snakeTail = parts[parts.Count - 1];
             parts.Add(snakeTail);
+        }
+
+        public void Reset() {
+            parts.Clear();
+            var newHead = spawnPoint;
+            parts.Add(newHead);
         }
 
         public Position Move(Direction dir) {

@@ -214,7 +214,7 @@ namespace Snake {
         private void HandleSnakeLogic(Direction snakeDirection) {
             var snakeHead = snake.Move(snakeDirection);
             if (snake.IsEatingItself()) {
-                ExitGame();
+                EndGame();
             }
 
             var cellContents = grid.GetCellAt(snakeHead).content;
@@ -254,11 +254,11 @@ namespace Snake {
         }
 
         void ExitGameClick(object sender, RoutedEventArgs e) {
-            ExitGame();
+            System.Windows.Application.Current.Shutdown();
         }
 
-        void ExitGame() {
-            System.Windows.Application.Current.Shutdown();
+        void EndGame() {
+            timer.Stop();
         }
 
         void ChangeSnakeColorClick(object sender, RoutedEventArgs e) {
@@ -273,6 +273,11 @@ namespace Snake {
         void MenuButttonClick(object sender, RoutedEventArgs e) {
             Menu.Visibility = Visibility.Visible;
             GameScreen.Visibility = Visibility.Collapsed;
+
+            timer.Stop();
+            grid.Reset();
+            snake.Reset();
+            currentSnakeDirection = Direction.Right;
         }
 
         void ChangeLanguageClick(object sender, RoutedEventArgs e) {
