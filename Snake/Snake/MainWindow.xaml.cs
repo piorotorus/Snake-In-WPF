@@ -16,13 +16,11 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Grid = Snake.Code.Grid;
 
-namespace Snake
-{
+namespace Snake {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
+    public partial class MainWindow : Window {
         int snakeColorIndex = 0;
         SnakeEntity snake;
         Grid grid;
@@ -34,8 +32,7 @@ namespace Snake
         DispatcherTimer timer;
 
     
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
             GameAreaGrid.SizeChanged += HandleSizeChange;
             KeyDown += new KeyEventHandler(OnButtonKeyDown);
@@ -49,16 +46,14 @@ namespace Snake
             timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
         }
 
-        void StartGame()
-        {
+        void StartGame() {
             // TODO: generate apples (discard positions on snake, spikes or other apples) and spike walls
             PlantApple();
             Tick();
             timer.Start();
         }
 
-        void PlantApple()
-        {
+        void PlantApple() {
             var applePosition = new Position();
             Random randomNumberGenerator = new Random();
             applePosition.X = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
@@ -67,8 +62,7 @@ namespace Snake
             grid.SetCellContent(ref applePosition, CellContent.Apple);
         }
 
-        DispatcherTimer InitTimer(TimeSpan tickFrequency)
-        {
+        DispatcherTimer InitTimer(TimeSpan tickFrequency) {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = tickFrequency;
             timer.Tick += new EventHandler(TickEvent);
@@ -76,18 +70,16 @@ namespace Snake
             return timer;
         }
 
-        void GenerateCanvasCells()
-        {
+        void GenerateCanvasCells() {
             var cellCount = sideCellCount * sideCellCount;
             displayCells = new Rectangle[cellCount];
 
             var defaultColor = new SolidColorBrush(Colors.Black);
             var cellPosition = new Position();
-            for (var y = 0; y < sideCellCount; y++)
-            {
+
+            for (var y = 0; y < sideCellCount; y++) {
                 cellPosition.Y = y;
-                for (var x = 0; x < sideCellCount; x++)
-                {
+                for (var x = 0; x < sideCellCount; x++) {
                     cellPosition.X = x;
                     Rectangle rect = new Rectangle
                     {
@@ -105,21 +97,17 @@ namespace Snake
             }
         }
 
-        private void Window_ContentRendered(object sender, EventArgs e)
-        {
+        private void Window_ContentRendered(object sender, EventArgs e) {
             SetCellColor(snake.GetHeadPosition(), SnakeColor.GetColorBrush(SnakeColor.ColorPalette.GREEN));
         }
 
-        private void SetCellColor(Position cellPosition, SolidColorBrush colorBrush)
-        {
+        private void SetCellColor(Position cellPosition, SolidColorBrush colorBrush) {
             var rect = displayCells[grid.GetIndexToCell(ref cellPosition)];
             rect.Fill = colorBrush;
         }
 
-        private void OnButtonKeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.Key)
-            {
+        private void OnButtonKeyDown(object sender, KeyEventArgs e) {
+            switch (e.Key) {
                 case Key.Down:
                 case Key.S:
                     if (currentSnakeDirection != Direction.Up)
@@ -146,34 +134,28 @@ namespace Snake
             }
         }
 
-        private void TickEvent(object sender, EventArgs e)
-        {
+        private void TickEvent(object sender, EventArgs e) {
             Tick();
         }
 
-        void Tick()
-        {
+        void Tick() {
             HandleSnakeLogic(currentSnakeDirection);
             PaintGrid();
             PaintSnake();
             DisplayScore();
         }
 
-        void PaintGrid()
-        {
+        void PaintGrid() {
             Position p = new Position();
             SolidColorBrush brushColor = SnakeColor.GetColorBrush(SnakeColor.ColorPalette.WHITE);
 
-            for (int y = 0; y < sideCellCount; y++)
-            {
+            for (int y = 0; y < sideCellCount; y++) {
                 p.Y = y;
-                for (byte x = 0; x < sideCellCount; x++)
-                {
+                for (byte x = 0; x < sideCellCount; x++) {
                     p.X = x;
                     var cellContent = grid.GetCellAt(p).content;
 
-                    switch (cellContent)
-                    {
+                    switch (cellContent) {
                         case CellContent.Empty:
                             var color = Color.FromRgb((byte)((x * 6) + (y * 5)), (byte)((x * 3) + (y * 0)), (byte)((x * 1) + (y * 3)));
                             brushColor = new SolidColorBrush(color);
@@ -193,51 +175,45 @@ namespace Snake
             }
         }
 
-    void HandleSizeChange(object sender, SizeChangedEventArgs args)
-    {
-        Canvas canvas = GameAreaGrid.FindName("GameArea") as Canvas;
-        if (canvas == null)
-            throw new Exception("canvas not found");
+        void HandleSizeChange(object sender, SizeChangedEventArgs args) {
+            Canvas canvas = GameAreaGrid.FindName("GameArea") as Canvas;
+            if (canvas == null)
+                throw new Exception("canvas not found");
 
-        var newCanvasWidth = Math.Ceiling(Math.Min(GameAreaGrid.ActualWidth, GameAreaGrid.ActualHeight));
-        canvas.Width = newCanvasWidth;
-        canvas.Height = newCanvasWidth;
+            var newCanvasWidth = Math.Ceiling(Math.Min(GameAreaGrid.ActualWidth, GameAreaGrid.ActualHeight));
+            canvas.Width = newCanvasWidth;
+            canvas.Height = newCanvasWidth;
 
-        cellWidth = newCanvasWidth / sideCellCount;
-        var cellPosition = new Position();
+            cellWidth = newCanvasWidth / sideCellCount;
+            var cellPosition = new Position();
 
-        for (var y = 0; y < sideCellCount; y++)
-        {
-            cellPosition.Y = y;
-            for (var x = 0; x < sideCellCount; x++)
+            for (var y = 0; y < sideCellCount; y++)
             {
-                cellPosition.X = x;
-                var cellIndex = grid.GetIndexToCell(ref cellPosition);
-                var cell = displayCells[cellIndex];
-                cell.Width = cellWidth;
-                cell.Height = cellWidth;
+                cellPosition.Y = y;
+                for (var x = 0; x < sideCellCount; x++)
+                {
+                    cellPosition.X = x;
+                    var cellIndex = grid.GetIndexToCell(ref cellPosition);
+                    var cell = displayCells[cellIndex];
+                    cell.Width = cellWidth;
+                    cell.Height = cellWidth;
 
-                Canvas.SetLeft(cell, cellPosition.X * cellWidth);
-                Canvas.SetTop(cell, cellPosition.Y * cellWidth);
+                    Canvas.SetLeft(cell, cellPosition.X * cellWidth);
+                    Canvas.SetTop(cell, cellPosition.Y * cellWidth);
+                }
             }
         }
-
-        Console.WriteLine(cellWidth);
-    }
         
-    void PaintSnake()
-        {
+        void PaintSnake() {
             foreach (var snakePartPosition in snake.parts)
                 SetCellColor(snakePartPosition, SnakeColor.colorBrushes[snakeColorIndex]);
         }
 
-        private void HandleSnakeLogic(Direction snakeDirection)
-        {
+        private void HandleSnakeLogic(Direction snakeDirection) {
             var snakeHead = snake.Move(snakeDirection);
             var cellContents = grid.GetCellAt(snakeHead).content;
 
-            switch (cellContents)
-            {
+            switch (cellContents) {
                 case CellContent.Empty:
                     score++;
                     break;
@@ -260,55 +236,42 @@ namespace Snake
             }
         }
 
-        void DisplayScore()
-        {
+        void DisplayScore() {
             HighScore.Text = "Highscore: "+score.ToString();
         }
 
-        void StartGameClick(object sender, RoutedEventArgs e)
-        {
+        void StartGameClick(object sender, RoutedEventArgs e) {
 
             Menu.Visibility = Visibility.Collapsed;
             GameScreen.Visibility = Visibility.Visible;
             StartGame();
         }
 
-        void ExitGameClick(object sender, RoutedEventArgs e)
-        {
+        void ExitGameClick(object sender, RoutedEventArgs e) {
             System.Windows.Application.Current.Shutdown();
         }
 
-        void ChangeSnakeColorClick(object sender, RoutedEventArgs e)
-        {
+        void ChangeSnakeColorClick(object sender, RoutedEventArgs e) {
             if (snakeColorIndex == SnakeColor.colorBrushes.Length - 1)
-            {
                 snakeColorIndex = 0;
-            }
             else
-            {
                 snakeColorIndex++;
-            }
 
             ChangeSnakeColorButton.Foreground = SnakeColor.colorBrushes[snakeColorIndex];
         }
 
-        void MenuButttonClick(object sender, RoutedEventArgs e)
-        {
+        void MenuButttonClick(object sender, RoutedEventArgs e) {
             Menu.Visibility = Visibility.Visible;
             GameScreen.Visibility = Visibility.Collapsed;
         }
 
-        void ChangeLanguageClick(object sender, RoutedEventArgs e)
-        {
-            if ((string)ExitButton.Content == "Exit")
-            {
+        void ChangeLanguageClick(object sender, RoutedEventArgs e) {
+            if ((string)ExitButton.Content == "Exit") {
                 StartButton.Content = "Rozpocznij";
                 ExitButton.Content = "Wyjście";
                 ChangeLanguageButton.Content = "Zmień język";
                 ChangeSnakeColorButton.Content = "Zmień kolor węża";
-            }
-            else
-            {
+            } else {
                 StartButton.Content = "Start";
                 ExitButton.Content = "Exit";
                 ChangeLanguageButton.Content = "Change Language";

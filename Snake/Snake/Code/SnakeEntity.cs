@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake.Code
-{
-    public enum Direction
-    {
+namespace Snake.Code {
+    public enum Direction {
         None,
         Left,
         Right,
@@ -15,13 +13,11 @@ namespace Snake.Code
         Down
     }
 
-    public class SnakeEntity
-    {
+    public class SnakeEntity {
         public readonly List<Position> parts;
         Grid grid;
 
-        public SnakeEntity(Position spawnPoint, Grid grid)
-        {
+        public SnakeEntity(Position spawnPoint, Grid grid) {
             if (grid == null)
                 throw new Exception("grid is null");
 
@@ -31,34 +27,28 @@ namespace Snake.Code
             parts.Add(spawnPoint);
         }
 
-        public Position SetHeadPosition(Position position)
-        {
+        public Position SetHeadPosition(Position position) {
             return parts[0] = position;
         }
 
-        public Position GetHeadPosition()
-        {
+        public Position GetHeadPosition() {
             return parts[0];
         }
 
-        public void Grow()
-        {
+        public void Grow() {
             var snakeTail = parts[parts.Count - 1];
             parts.Add(snakeTail);
         }
 
-        void UpdatePartsPositionsAccordingToHead()
-        {
+        void UpdatePartsPositionsAccordingToHead() {
             for (var i = parts.Count - 1; i > 0; --i)
                 parts[i] = parts[i - 1];
         }
 
-        public Position Move(Direction dir)
-        {
+        public Position Move(Direction dir) {
             Position newHeadPosition = GetHeadPosition();
 
-            switch (dir)
-            {
+            switch (dir) {
                 case Direction.Left:
                     newHeadPosition.X--;
                     break;
