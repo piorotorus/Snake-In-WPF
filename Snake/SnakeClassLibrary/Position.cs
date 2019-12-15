@@ -21,5 +21,22 @@ namespace Snake.Code {
         public static bool operator !=(Position p1, Position p2) {
             return p1.X != p2.X || p1.Y != p2.Y;
         }
+
+        public override bool Equals(Object obj) {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+                return false;
+            else {
+                Position p = (Position)obj;
+                return this == p;
+            }
+        }
+
+        public override int GetHashCode() {
+            return X * 604171 + Y * 20771;
+        }
+
+        public override string ToString() {
+            return $"Position: (x:{X}, y:{Y})";
+        }
     }
 }
