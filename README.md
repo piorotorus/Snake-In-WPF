@@ -7,7 +7,6 @@ Gra będzie zrobiona w WPF.
 Możliwość zmiany trudności z czasem (przyśpieszanie poruszania).
 Proste Menu pozwalające zacząć gre od początku i zmianę ustawień
 
-To do:
-Kamil-zrobienie gry
-Piotr-zrobienie menu, komentarze xml
+Pozostałe do zrobienia:
 wspólnie-testy jednostkowe
+wspólnie- instalka aplikacji
