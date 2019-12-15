@@ -289,7 +289,7 @@ namespace Snake
         void MenuButttonClick(object sender, RoutedEventArgs e)
         {
             Menu.Visibility = Visibility.Visible;
-            GameAreaGrid.Visibility = Visibility.Collapsed;
+            GameScreen.Visibility = Visibility.Collapsed;
         }
 
         void ChangeLanguageClick(object sender, RoutedEventArgs e)
