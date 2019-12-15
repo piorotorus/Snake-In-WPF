@@ -40,9 +40,13 @@ namespace Snake.Code {
             parts.Add(snakeTail);
         }
 
-        void UpdatePartsPositionsAccordingToHead() {
-            for (var i = parts.Count - 1; i > 0; --i)
-                parts[i] = parts[i - 1];
+        public bool IsAtPosition(ref Position position) {
+            for (int i = 0; i < parts.Count; i++)
+                if (parts[i] == position)
+                    return true;
+           
+
+            return false;
         }
 
         public Position Move(Direction dir) {
@@ -74,6 +78,11 @@ namespace Snake.Code {
             SetHeadPosition(newHeadPosition);
 
             return GetHeadPosition();
+        }
+
+        void UpdatePartsPositionsAccordingToHead() {
+            for (var i = parts.Count - 1; i > 0; --i)
+                parts[i] = parts[i - 1];
         }
     }
 }

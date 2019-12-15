@@ -6,40 +6,33 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Snake.Code
-{
-    public enum CellContent
-    {
+namespace Snake.Code {
+    public enum CellContent {
         Empty,
         Apple,
         Spikes
     }
 
-    public struct GridCell
-    {
+    public struct GridCell {
         public CellContent content;
     }
 
-    public class Grid
-    {
+    public class Grid {
         uint sideCellCount;
         GridCell[] cells;
         public uint cellCount;
 
-        public Grid(uint sideCellCount)
-        {
+        public Grid(uint sideCellCount) {
             this.sideCellCount = sideCellCount;
             cellCount = sideCellCount * sideCellCount;
             cells = new GridCell[cellCount];
         }
 
-        public int GetIndexToCell(ref Position p)
-        {
+        public int GetIndexToCell(ref Position p) {
             return (int)(p.Y * sideCellCount + p.X);
         }
 
-        public ref GridCell GetCellAt(Position p)
-        {
+        public ref GridCell GetCellAt(Position p) {
             var gridIndex = GetIndexToCell(ref p);
             if (gridIndex < 0 || gridIndex >= cellCount)
                 throw new Exception("invalid grid index");
@@ -47,18 +40,19 @@ namespace Snake.Code
             return ref cells[gridIndex];
         }
 
-        public bool ContainsAt(Position p, CellContent content)
-        {
+        public bool IsCellEmpty(ref Position position) {
+            return GetCellAt(position).content == CellContent.Empty;
+        }
+
+        public bool ContainsAt(Position p, CellContent content) {
             return GetCellAt(p).content == content;
         }
 
-        public void SetCellContent(ref Position p, CellContent newContent)
-        {
+        public void SetCellContent(ref Position p, CellContent newContent) {
             cells[GetIndexToCell(ref p)].content = newContent;
         }
 
-        public void WrapPositionToGrid(ref Position position)
-        {
+        public void WrapPositionToGrid(ref Position position) {
             if (position.X < 0)
                 position.X += (int)sideCellCount;
 

@@ -30,7 +30,6 @@ namespace Snake {
         double cellWidth = 20f;
         uint sideCellCount = 22;
         DispatcherTimer timer;
-
     
         public MainWindow() {
             InitializeComponent();
@@ -53,11 +52,18 @@ namespace Snake {
             timer.Start();
         }
 
+        bool CellContainsSomethingOrSnakeIsThere(ref Position position) {
+            return (!grid.IsCellEmpty(ref position)) || snake.IsAtPosition(ref position);
+        }
+
         void PlantApple() {
             var applePosition = new Position();
-            Random randomNumberGenerator = new Random();
-            applePosition.X = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
-            applePosition.Y = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+
+            do {
+                Random randomNumberGenerator = new Random();
+                applePosition.X = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+                applePosition.Y = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+            } while (CellContainsSomethingOrSnakeIsThere(ref applePosition));
 
             grid.SetCellContent(ref applePosition, CellContent.Apple);
         }
@@ -187,11 +193,9 @@ namespace Snake {
             cellWidth = newCanvasWidth / sideCellCount;
             var cellPosition = new Position();
 
-            for (var y = 0; y < sideCellCount; y++)
-            {
+            for (var y = 0; y < sideCellCount; y++) {
                 cellPosition.Y = y;
-                for (var x = 0; x < sideCellCount; x++)
-                {
+                for (var x = 0; x < sideCellCount; x++) {
                     cellPosition.X = x;
                     var cellIndex = grid.GetIndexToCell(ref cellPosition);
                     var cell = displayCells[cellIndex];
@@ -237,7 +241,7 @@ namespace Snake {
         }
 
         void DisplayScore() {
-            HighScore.Text = "Highscore: "+score.ToString();
+            HighScore.Text = "Highscore: "+ score.ToString();
         }
 
         void StartGameClick(object sender, RoutedEventArgs e) {
@@ -248,6 +252,10 @@ namespace Snake {
         }
 
         void ExitGameClick(object sender, RoutedEventArgs e) {
+            ExitGame();
+        }
+
+        void ExitGame() {
             System.Windows.Application.Current.Shutdown();
         }
 
