@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Snake.Code {
+
+
     public enum Direction {
         None,
         Left,
@@ -12,11 +14,18 @@ namespace Snake.Code {
         Up,
         Down
     }
-
+    /// <summary>
+    /// Main Class take care of Snake body and moving
+    /// </summary>
     public class SnakeEntity {
         public readonly List<Position> parts;
         Grid grid;
 
+        /// <summary>
+        /// Method create first element of snake at start place
+        /// </summary>
+        /// <param name="spawnPoint">Position where Snake start</param>
+        /// <param name="grid">One field on gamemap</param>
         public SnakeEntity(Position spawnPoint, Grid grid) {
             if (grid == null)
                 throw new Exception("grid is null");
@@ -27,8 +36,12 @@ namespace Snake.Code {
             parts.Add(spawnPoint);
         }
 
-        public Position SetHeadPosition(Position position) {
-            return parts[0] = position;
+        /// <summary>
+        /// Set where is head of our Snake
+        /// </summary>
+        /// <param name="position">Position which is head of our Snake</param>  
+        public void SetHeadPosition(Position position) {
+          parts[0] = position;
         }
 
         public Position GetHeadPosition() {

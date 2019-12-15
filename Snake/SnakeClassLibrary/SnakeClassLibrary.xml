@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SnakeClassLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:Snake.Code.SnakeEntity">
+            <summary>
+            Main Class take care of Snake body and moving
+            </summary>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.#ctor(Snake.Code.Position,Snake.Code.Grid)">
+            <summary>
+            Method create first element of snake at start place
+            </summary>
+            <param name="spawnPoint">Position where Snake start</param>
+            <param name="grid">One field on gamemap</param>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.SetHeadPosition(Snake.Code.Position)">
+            <summary>
+            Set where is head of our Snake
+            </summary>
+            <param name="position">Position which is head of our Snake</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
