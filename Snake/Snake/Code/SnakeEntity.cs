@@ -40,15 +40,6 @@ namespace Snake.Code {
             parts.Add(snakeTail);
         }
 
-        public bool IsAtPosition(ref Position position) {
-            for (int i = 0; i < parts.Count; i++)
-                if (parts[i] == position)
-                    return true;
-           
-
-            return false;
-        }
-
         public Position Move(Direction dir) {
             Position newHeadPosition = GetHeadPosition();
 
@@ -78,6 +69,25 @@ namespace Snake.Code {
             SetHeadPosition(newHeadPosition);
 
             return GetHeadPosition();
+        }
+
+        public bool IsAtPosition(ref Position position) {
+            for (int i = 0; i < parts.Count; i++)
+                if (parts[i] == position)
+                    return true;
+
+
+            return false;
+        }
+
+        public bool IsEatingItself() {
+            var headPosition = GetHeadPosition();
+            for (int i = 1; i < parts.Count; i++)
+                if (headPosition == parts[i])
+                    return true;
+
+
+            return false;
         }
 
         void UpdatePartsPositionsAccordingToHead() {

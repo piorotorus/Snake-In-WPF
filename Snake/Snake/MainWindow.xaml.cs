@@ -1,17 +1,9 @@
 ﻿using Snake.Code;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Grid = Snake.Code.Grid;
@@ -30,7 +22,8 @@ namespace Snake {
         double cellWidth = 20f;
         uint sideCellCount = 22;
         DispatcherTimer timer;
-    
+        bool directionWasUpdatedInThisTickTime = false;
+
         public MainWindow() {
             InitializeComponent();
             GameAreaGrid.SizeChanged += HandleSizeChange;
@@ -46,7 +39,6 @@ namespace Snake {
         }
 
         void StartGame() {
-            // TODO: generate apples (discard positions on snake, spikes or other apples) and spike walls
             PlantApple();
             Tick();
             timer.Start();
@@ -113,6 +105,9 @@ namespace Snake {
         }
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e) {
+            if (directionWasUpdatedInThisTickTime)
+                return;
+
             switch (e.Key) {
                 case Key.Down:
                 case Key.S:
@@ -138,6 +133,8 @@ namespace Snake {
                         currentSnakeDirection = Direction.Right;
                     break;
             }
+
+            directionWasUpdatedInThisTickTime = true;
         }
 
         private void TickEvent(object sender, EventArgs e) {
@@ -149,6 +146,7 @@ namespace Snake {
             PaintGrid();
             PaintSnake();
             DisplayScore();
+            directionWasUpdatedInThisTickTime = false;
         }
 
         void PaintGrid() {
@@ -215,6 +213,10 @@ namespace Snake {
 
         private void HandleSnakeLogic(Direction snakeDirection) {
             var snakeHead = snake.Move(snakeDirection);
+            if (snake.IsEatingItself()) {
+                ExitGame();
+            }
+
             var cellContents = grid.GetCellAt(snakeHead).content;
 
             switch (cellContents) {
