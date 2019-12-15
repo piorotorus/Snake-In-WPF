@@ -5,13 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Snake.Code
-{
-    class SnakeColor
-    {
+namespace Snake.Code {
+    public class SnakeColor {
 
-        static public readonly SolidColorBrush[] colorBrushes = new SolidColorBrush[]
-         {
+        static public readonly SolidColorBrush[] colorBrushes = new SolidColorBrush[] {
             new SolidColorBrush(Colors.White),
             new SolidColorBrush(Colors.Red),
             new SolidColorBrush(Colors.Black),
@@ -23,8 +20,7 @@ namespace Snake.Code
 
          };
 
-        public enum ColorPalette
-        {
+        public enum ColorPalette {
             WHITE = 0,
             RED,
             BLACK,
@@ -33,13 +29,10 @@ namespace Snake.Code
             YELLOW,
             BROWN,
             BLUE
-
         }
 
-        static public SolidColorBrush GetColorBrush(ColorPalette color)
-        {
+        static public SolidColorBrush GetColorBrush(ColorPalette color) {
             return colorBrushes[(int)color];
         }
-
     }
 }
