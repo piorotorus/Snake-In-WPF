@@ -4,9 +4,134 @@
         <name>SnakeClassLibrary</name>
     </assembly>
     <members>
+        <member name="T:Snake.Code.CellContent">
+            <summary>
+            Enum choose what to be in grid
+            </summary>
+        </member>
+        <member name="T:Snake.Code.Grid">
+            <summary>
+            Class that take care of filling gamescene with grids
+            </summary>
+        </member>
+        <member name="M:Snake.Code.Grid.#ctor(System.UInt32)">
+            <summary>
+            Constructor of Grid class
+            </summary>
+            <param name="sideCellCount">Sied cell count</param>
+        </member>
+        <member name="M:Snake.Code.Grid.GetIndexToCell(Snake.Code.Position@)">
+            <summary>
+            Get cell index of given position
+            </summary>
+            <param name="p">Position that cell index we want</param>
+            <returns>Return index of given poition</returns>
+        </member>
+        <member name="M:Snake.Code.Grid.GetCellAt(Snake.Code.Position)">
+            <summary>
+            Get reference to cell of given position
+            </summary>
+            <param name="p">Position that cell index we want</param>
+            <returns>Return reference to cell of given position</returns>
+        </member>
+        <member name="M:Snake.Code.Grid.IsCellEmpty(Snake.Code.Position@)">
+            <summary>
+            Check is Cell empty in given position
+            </summary>
+            <param name="position">Position that cell is empty we want</param>
+            <returns>Return bool if is empty or not</returns>
+        </member>
+        <member name="M:Snake.Code.Grid.ContainsAt(Snake.Code.Position,Snake.Code.CellContent)">
+            <summary>
+            Check is Position contains specific cell
+            </summary>
+            <param name="p">Position that we want to check</param>
+            <param name="content">Specific cell that we want to compare with</param>
+            <returns>Return bool if is the same or not</returns>
+        </member>
+        <member name="M:Snake.Code.Grid.SetCellContent(Snake.Code.Position@,Snake.Code.CellContent)">
+            <summary>
+            Set what is the cell content
+            </summary>
+            <param name="p">Reference to position where we want set new content</param>
+            <param name="newContent">Type of new cell content taht we want to add</param>
+        </member>
+        <member name="M:Snake.Code.Grid.Reset">
+            <summary>
+            Reset every cell content in gamescene
+            </summary>
+        </member>
+        <member name="M:Snake.Code.Grid.WrapPositionToGrid(Snake.Code.Position@)">
+            <summary>
+            Make grid form given position
+            </summary>
+            <param name="position">Position that we want to make Grid</param>
+        </member>
+        <member name="T:Snake.Code.Position">
+            <summary>
+            Struct calculating Position in our game map and implementing Equals of Positions
+            </summary>
+        </member>
+        <member name="M:Snake.Code.Position.op_Equality(Snake.Code.Position,Snake.Code.Position)">
+            <summary>
+            Overload of == operator
+            </summary>
+            <param name="p1">Position 1 parameter</param>
+            <param name="p2">Position 2 parameter</param>
+            <returns>Return bool if positions are equal </returns>
+        </member>
+        <member name="M:Snake.Code.Position.op_Inequality(Snake.Code.Position,Snake.Code.Position)">
+            <summary>
+            Overload of != operator
+            </summary>
+            <param name="p1">Position 1 parameter</param>
+            <param name="p2">Position 2 parameter</param>
+            <returns>Return bool if positions are not equal</returns>
+        </member>
+        <member name="M:Snake.Code.Position.Equals(System.Object)">
+            <summary>
+            Override Equals method
+            </summary>
+            <param name="obj">Object that we want equals with object position</param>
+            <returns>Return bool if object is equal with our position or not</returns>
+        </member>
+        <member name="M:Snake.Code.Position.GetHashCode">
+            <summary>
+             GetHashCode of given position
+            </summary>
+            <returns>Return int which is position hashcode</returns>
+        </member>
+        <member name="M:Snake.Code.Position.ToString">
+            <summary>
+            Override ToString method to represent position in string format
+            </summary>
+            <returns>Return string representation of given position</returns>
+        </member>
+        <member name="T:Snake.Code.SnakeColor">
+            <summary>
+            Class that take care of our Snake color
+            </summary>
+        </member>
+        <member name="T:Snake.Code.SnakeColor.ColorPalette">
+            <summary>
+            Enum palette with collors
+            </summary>
+        </member>
+        <member name="M:Snake.Code.SnakeColor.GetColorBrush(Snake.Code.SnakeColor.ColorPalette)">
+            <summary>
+            Make SolidColorBrush from our color palette
+            </summary>
+            <param name="color">Color that we want from our palette</param>
+            <returns></returns>
+        </member>
+        <member name="T:Snake.Code.Direction">
+            <summary>
+            Enum that show which direction player want move
+            </summary>
+        </member>
         <member name="T:Snake.Code.SnakeEntity">
             <summary>
-            Main Class take care of Snake body and moving
+            Class take care of Snake body and moving
             </summary>
         </member>
         <member name="M:Snake.Code.SnakeEntity.#ctor(Snake.Code.Position,Snake.Code.Grid)">
@@ -42,8 +167,26 @@
             <summary>
             Move our Snake through the map
             </summary>
-            <param name="dir"></param>
-            <returns></returns>
+            <param name="dir">Enum which set direction of move</param>
+            <returns>Return what is position of our Snake head</returns>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.IsAtPosition(Snake.Code.Position@)">
+            <summary>
+            Compare if any of snake parts is at specific place
+            </summary>
+            <param name="position">Position that we want to compare with our snake</param>
+            <returns>return true if snake is at the same position or false if not</returns>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.IsEatingItself">
+            <summary>
+            Check is Snake head is at the same position as his body
+            </summary>
+            <returns>return true if snake is at the same position as his body or false if not</returns>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.UpdatePartsPositionsAccordingToHead">
+            <summary>
+            Update position of Snake body depending on position of earlier Snake body elements
+            </summary>
         </member>
     </members>
 </doc>

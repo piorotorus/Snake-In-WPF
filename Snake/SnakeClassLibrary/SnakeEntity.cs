@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Snake.Code {
 
-
+  /// <summary>
+  /// Enum that show which direction player want move
+  /// </summary>
     public enum Direction {
         None,
         Left,
@@ -15,7 +17,7 @@ namespace Snake.Code {
         Down
     }
     /// <summary>
-    /// Main Class take care of Snake body and moving
+    /// Class take care of Snake body and moving
     /// </summary>
     public class SnakeEntity {
         public readonly List<Position> parts;
@@ -75,8 +77,8 @@ namespace Snake.Code {
         /// <summary>
         /// Move our Snake through the map
         /// </summary>
-        /// <param name="dir"></param>
-        /// <returns></returns>
+        /// <param name="dir">Enum which set direction of move</param>
+        /// <returns>Return what is position of our Snake head</returns>
         public Position Move(Direction dir) {
             Position newHeadPosition = GetHeadPosition();
 
@@ -108,6 +110,11 @@ namespace Snake.Code {
             return GetHeadPosition();
         }
 
+        /// <summary>
+        /// Compare if any of snake parts is at specific place
+        /// </summary>
+        /// <param name="position">Position that we want to compare with our snake</param>
+        /// <returns>return true if snake is at the same position or false if not</returns>
         public bool IsAtPosition(ref Position position) {
             for (int i = 0; i < parts.Count; i++)
                 if (parts[i] == position)
@@ -117,6 +124,10 @@ namespace Snake.Code {
             return false;
         }
 
+        /// <summary>
+        /// Check is Snake head is at the same position as his body
+        /// </summary>
+        /// <returns>return true if snake is at the same position as his body or false if not</returns>
         public bool IsEatingItself() {
             var headPosition = GetHeadPosition();
             for (int i = 1; i < parts.Count; i++)
@@ -127,6 +138,9 @@ namespace Snake.Code {
             return false;
         }
 
+        /// <summary>
+        /// Update position of Snake body depending on position of earlier Snake body elements
+        /// </summary>
         void UpdatePartsPositionsAccordingToHead() {
             for (var i = parts.Count - 1; i > 0; --i)
                 parts[i] = parts[i - 1];
