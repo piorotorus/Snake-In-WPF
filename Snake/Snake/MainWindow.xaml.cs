@@ -156,7 +156,7 @@ namespace Snake
             HandleSnakeLogic(currentSnakeDirection);
             PaintGrid();
             PaintSnake();
-            // Display Score
+            DisplayScore();
         }
 
         void PaintGrid()
@@ -247,6 +247,7 @@ namespace Snake
                     snake.Grow();
                     var snakeHeadPosition = snake.GetHeadPosition();
                     grid.SetCellContent(ref snakeHeadPosition, CellContent.Empty);
+                    DisplayScore();
                     PlantApple();
                     break;
 
@@ -257,6 +258,11 @@ namespace Snake
                 default:
                     throw new Exception("invalid cell contents");
             }
+        }
+
+        void DisplayScore()
+        {
+            HighScore.Text = "Highscore: "+score.ToString();
         }
 
         void StartGameClick(object sender, RoutedEventArgs e)

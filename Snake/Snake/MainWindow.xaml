@@ -39,6 +39,9 @@
             <Grid Grid.Row="2" x:Name="GameAreaGrid" Background="Black">
                 <Canvas Name="GameArea" Background="AliceBlue"/>
             </Grid>
+            <Grid>
+                <TextBox Margin="600,0,0,0" x:Name="HighScore" Foreground="White"  Background="CadetBlue" VerticalAlignment="Center" FontFamily="Penultimate" FontSize="22" FontWeight="Bold"></TextBox>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
