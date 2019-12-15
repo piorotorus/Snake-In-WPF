@@ -40,7 +40,7 @@ namespace Snake {
 
         void StartGame() {
             score = 0;
-            PlantApple();
+            Plant(CellContent.Apple);
             Tick();
             timer.Start();
         }
@@ -49,16 +49,16 @@ namespace Snake {
             return (!grid.IsCellEmpty(ref position)) || snake.IsAtPosition(ref position);
         }
 
-        void PlantApple() {
-            var applePosition = new Position();
+        void Plant(CellContent content) {
+            var position = new Position();
 
             do {
                 Random randomNumberGenerator = new Random();
-                applePosition.X = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
-                applePosition.Y = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
-            } while (CellContainsSomethingOrSnakeIsThere(ref applePosition));
+                position.X = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+                position.Y = randomNumberGenerator.Next(0, (int)(sideCellCount - 1));
+            } while (CellContainsSomethingOrSnakeIsThere(ref position));
 
-            grid.SetCellContent(ref applePosition, CellContent.Apple);
+            grid.SetCellContent(ref position, content);
         }
 
         DispatcherTimer InitTimer(TimeSpan tickFrequency) {
@@ -231,11 +231,12 @@ namespace Snake {
                     var snakeHeadPosition = snake.GetHeadPosition();
                     grid.SetCellContent(ref snakeHeadPosition, CellContent.Empty);
                     DisplayScore();
-                    PlantApple();
+                    Plant(CellContent.Apple);
+                    Plant(CellContent.Spikes);
                     break;
 
                 case CellContent.Spikes:
-                    throw new NotImplementedException();
+                    EndGame();
                     break;
 
                 default:

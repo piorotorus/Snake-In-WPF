@@ -22,5 +22,28 @@
             </summary>
             <param name="position">Position which is head of our Snake</param>  
         </member>
+        <member name="M:Snake.Code.SnakeEntity.GetHeadPosition">
+            <summary>
+            Get where is head of our Snake
+            </summary>
+            <returns>Return head part</returns>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.Grow">
+            <summary>
+            Increase Snake lenght
+            </summary>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.Reset">
+            <summary>
+            Resetart Snake lenght
+            </summary>
+        </member>
+        <member name="M:Snake.Code.SnakeEntity.Move(Snake.Code.Direction)">
+            <summary>
+            Move our Snake through the map
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
