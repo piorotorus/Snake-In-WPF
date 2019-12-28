@@ -6,8 +6,13 @@ using System.Text;
 using System.Windows.Input;
 
 namespace SnakeClassLibrary {
+    /// <summary>
+    /// Class take care of game logic and events
+    /// </summary>
     public static class SnakeGame {
-
+        /// <summary>
+        /// Method that create our game
+        /// </summary>
         public static void Initialise()
         {
             GameState.grid = new Grid(GameState.sideCellCount);
@@ -15,12 +20,20 @@ namespace SnakeClassLibrary {
             GameState.snake = new SnakeEntity(spawnPoint, GameState.grid);
         }
 
+        /// <summary>
+        /// Method that start our game
+        /// </summary>
         public static void StartGame()
         {
             GameState.score = 0;
             Plant(CellContent.Apple);
         }
 
+        /// <summary>
+        /// Method that handle whitch direction player move and check what is in cell that snake enter
+        /// </summary>
+        /// <param name="snakeDirection">Enum sthat shows dimove direction</param>
+        /// <returns>Return bool, false if game over(snake eat spikes or itself) or true if his move was correctly</returns>
         public static bool HandleSnakeLogic(Direction snakeDirection) {
             bool result = true;
 
@@ -57,6 +70,10 @@ namespace SnakeClassLibrary {
             return result;
         }
 
+        /// <summary>
+        /// Set given content in random place in game area
+        /// </summary>
+        /// <param name="content">Content that should be showed in game area, like apple or spikes</param>
         public static void Plant(CellContent content)
         {
             var position = new Position();
@@ -71,20 +88,52 @@ namespace SnakeClassLibrary {
             GameState.grid.SetCellContent(ref position, content);
         }
 
+        /// <summary>
+        /// Method that check is sometihng in cell in given position
+        /// </summary>
+        /// <param name="position">Position that we want to check</param>
+        /// <returns>Return true if is something at this position and false if it's empty</returns>
         public static bool CellContainsSomethingOrSnakeIsThere(ref Position position)
         {
             return (!GameState.grid.IsCellEmpty(ref position)) || GameState.snake.IsAtPosition(ref position);
         }
     }
 
+    /// <summary>
+    /// Struct that handle game variables
+    /// </summary>
     public struct GameState {
+        /// <summary>
+        /// Set color of our Snake
+        /// </summary>
         public static int snakeColorIndex = 0;
+        /// <summary>
+        /// Object represent our Snake
+        /// </summary>
         public static SnakeEntity snake;
+        /// <summary>
+        /// Object represent one cell in our game
+        /// </summary>
         public static Grid grid;
+        /// <summary>
+        /// Enum that show whitch direction snake is moving, default on game start it is right
+        /// </summary>
         public static Direction currentSnakeDirection = Direction.Right;
+        /// <summary>
+        /// Score that player gain in cuurent game
+        /// </summary>
         public static int score = 0;
+        /// <summary>
+        /// Set game area width
+        /// </summary>
         public static double cellWidth = 20f;
+        /// <summary>
+        /// Set game area lenght
+        /// </summary>
         public static uint sideCellCount = 22;
+        /// <summary>
+        /// Is game updating in tick time, activate when game is stardted
+        /// </summary>
         public static bool directionWasUpdatedInThisTickTime = false;
     }
 }
