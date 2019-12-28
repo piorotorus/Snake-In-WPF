@@ -12,6 +12,11 @@ namespace Snake.Code {
         public int X { get; set; }
         public int Y { get; set; }
 
+        /// <summary>
+        /// Give position point in our area
+        /// </summary>
+        /// <param name="x">Show which X cell is in our position</param>
+        /// <param name="y">Show which Y cell is in our position</param>
         public Position(int x, int y) {
             X = x;
             Y = y;

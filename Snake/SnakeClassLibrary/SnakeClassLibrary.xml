@@ -9,6 +9,26 @@
             Enum choose what to be in grid
             </summary>
         </member>
+        <member name="F:Snake.Code.CellContent.Empty">
+            <summary>
+            Enum of empty field in game area
+            </summary>
+        </member>
+        <member name="F:Snake.Code.CellContent.Apple">
+            <summary>
+            Enum of field with apple in game area
+            </summary>
+        </member>
+        <member name="F:Snake.Code.CellContent.Spikes">
+            <summary>
+            Enum of with spikes in game area
+            </summary>
+        </member>
+        <member name="T:Snake.Code.GridCell">
+            <summary>
+            Struct that gave CellContent instance
+            </summary>
+        </member>
         <member name="T:Snake.Code.Grid">
             <summary>
             Class that take care of filling gamescene with grids
@@ -72,6 +92,13 @@
             Struct calculating Position in our game map and implementing Equals of Positions
             </summary>
         </member>
+        <member name="M:Snake.Code.Position.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Give position point in our area
+            </summary>
+            <param name="x">Show which X cell is in our position</param>
+            <param name="y">Show which Y cell is in our position</param>
+        </member>
         <member name="M:Snake.Code.Position.op_Equality(Snake.Code.Position,Snake.Code.Position)">
             <summary>
             Overload of == operator
@@ -115,6 +142,46 @@
         <member name="T:Snake.Code.SnakeColor.ColorPalette">
             <summary>
             Enum palette with collors
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.WHITE">
+            <summary>
+            White color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.RED">
+            <summary>
+            Red color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.BLACK">
+            <summary>
+            Black color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.PINK">
+            <summary>
+            Pink color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.GREEN">
+            <summary>
+            Green color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.YELLOW">
+            <summary>
+            Yellow color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.BROWN">
+            <summary>
+            Brown color
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeColor.ColorPalette.BLUE">
+            <summary>
+            Blue color
             </summary>
         </member>
         <member name="M:Snake.Code.SnakeColor.GetColorBrush(Snake.Code.SnakeColor.ColorPalette)">
