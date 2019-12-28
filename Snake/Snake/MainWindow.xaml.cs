@@ -22,36 +22,10 @@ namespace Snake {
             GameAreaGrid.SizeChanged += HandleSizeChange;
             KeyDown += new KeyEventHandler(OnButtonKeyDown);
 
-            GameState.grid = new Grid(GameState.sideCellCount);
-            Position spawnPoint = new Position((int)GameState.sideCellCount / 2, (int)GameState.sideCellCount / 2);
-            GameState.snake = new SnakeEntity(spawnPoint, GameState.grid);
+            SnakeGame.Initialise();
 
             GenerateCanvasCells();
-
             timer = InitTimer(new TimeSpan(0, 0, 0, 0, 300));
-        }
-
-        void StartGame() {
-            GameState.score = 0;
-            Plant(CellContent.Apple);
-            Tick();
-            timer.Start();
-        }
-
-        bool CellContainsSomethingOrSnakeIsThere(ref Position position) {
-            return (!GameState.grid.IsCellEmpty(ref position)) || GameState.snake.IsAtPosition(ref position);
-        }
-
-        void Plant(CellContent content) {
-            var position = new Position();
-
-            do {
-                Random randomNumberGenerator = new Random();
-                position.X = randomNumberGenerator.Next(0, (int)(GameState.sideCellCount - 1));
-                position.Y = randomNumberGenerator.Next(0, (int)(GameState.sideCellCount - 1));
-            } while (CellContainsSomethingOrSnakeIsThere(ref position));
-
-            GameState.grid.SetCellContent(ref position, content);
         }
 
         DispatcherTimer InitTimer(TimeSpan tickFrequency) {
@@ -60,33 +34,6 @@ namespace Snake {
             timer.Tick += new EventHandler(TickEvent);
 
             return timer;
-        }
-
-        void GenerateCanvasCells() {
-            var cellCount = GameState.sideCellCount * GameState.sideCellCount;
-            displayCells = new Rectangle[cellCount];
-
-            var defaultColor = new SolidColorBrush(Colors.Black);
-            var cellPosition = new Position();
-
-            for (var y = 0; y < GameState.sideCellCount; y++) {
-                cellPosition.Y = y;
-                for (var x = 0; x < GameState.sideCellCount; x++) {
-                    cellPosition.X = x;
-                    Rectangle rect = new Rectangle
-                    {
-                        Width = GameState.cellWidth,
-                        Height = GameState.cellWidth,
-                        Fill = defaultColor
-                    };
-
-                    Canvas.SetLeft(rect, cellPosition.X * GameState.cellWidth);
-                    Canvas.SetTop(rect, cellPosition.Y * GameState.cellWidth);
-
-                    displayCells[GameState.grid.GetIndexToCell(ref cellPosition)] = rect;
-                    GameArea.Children.Add(rect);
-                }
-            }
         }
 
         private void Window_ContentRendered(object sender, EventArgs e) {
@@ -102,7 +49,8 @@ namespace Snake {
             if (GameState.directionWasUpdatedInThisTickTime)
                 return;
 
-            switch (e.Key) {
+            switch (e.Key)
+            {
                 case Key.Down:
                 case Key.S:
                     if (GameState.currentSnakeDirection != Direction.Up)
@@ -136,11 +84,41 @@ namespace Snake {
         }
 
         void Tick() {
-            HandleSnakeLogic(GameState.currentSnakeDirection);
+            bool shouldEndGame = !SnakeGame.HandleSnakeLogic(GameState.currentSnakeDirection);
+            if (shouldEndGame)
+                EndGame();
+
             PaintGrid();
             PaintSnake();
             DisplayScore();
             GameState.directionWasUpdatedInThisTickTime = false;
+        }
+
+        void GenerateCanvasCells() {
+            var cellCount = GameState.sideCellCount * GameState.sideCellCount;
+            displayCells = new Rectangle[cellCount];
+
+            var defaultColor = new SolidColorBrush(Colors.Black);
+            var cellPosition = new Position();
+
+            for (var y = 0; y < GameState.sideCellCount; y++){
+                cellPosition.Y = y;
+                for (var x = 0; x < GameState.sideCellCount; x++){
+                    cellPosition.X = x;
+                    Rectangle rect = new Rectangle
+                    {
+                        Width = GameState.cellWidth,
+                        Height = GameState.cellWidth,
+                        Fill = defaultColor
+                    };
+
+                    Canvas.SetLeft(rect, cellPosition.X * GameState.cellWidth);
+                    Canvas.SetTop(rect, cellPosition.Y * GameState.cellWidth);
+
+                    displayCells[GameState.grid.GetIndexToCell(ref cellPosition)] = rect;
+                    GameArea.Children.Add(rect);
+                }
+            }
         }
 
         void PaintGrid() {
@@ -173,6 +151,11 @@ namespace Snake {
             }
         }
 
+        void PaintSnake() {
+            foreach (var snakePartPosition in GameState.snake.parts)
+                SetCellColor(snakePartPosition, SnakeColor.colorBrushes[GameState.snakeColorIndex]);
+        }
+
         void HandleSizeChange(object sender, SizeChangedEventArgs args) {
             Canvas canvas = GameAreaGrid.FindName("GameArea") as Canvas;
             if (canvas == null)
@@ -199,43 +182,6 @@ namespace Snake {
                 }
             }
         }
-        
-        void PaintSnake() {
-            foreach (var snakePartPosition in GameState.snake.parts)
-                SetCellColor(snakePartPosition, SnakeColor.colorBrushes[GameState.snakeColorIndex]);
-        }
-
-        private void HandleSnakeLogic(Direction snakeDirection) {
-            var snakeHead = GameState.snake.Move(snakeDirection);
-            if (GameState.snake.IsEatingItself()) {
-                EndGame();
-            }
-
-            var cellContents = GameState.grid.GetCellAt(snakeHead).content;
-
-            switch (cellContents) {
-                case CellContent.Empty:
-                    GameState.score++;
-                    break;
-
-                case CellContent.Apple:
-                    GameState.score += 100;
-                    GameState.snake.Grow();
-                    var snakeHeadPosition = GameState.snake.GetHeadPosition();
-                    GameState.grid.SetCellContent(ref snakeHeadPosition, CellContent.Empty);
-                    DisplayScore();
-                    Plant(CellContent.Apple);
-                    Plant(CellContent.Spikes);
-                    break;
-
-                case CellContent.Spikes:
-                    EndGame();
-                    break;
-
-                default:
-                    throw new Exception("invalid cell contents");
-            }
-        }
 
         void DisplayScore() {
             HighScore.Text = "Highscore: "+ GameState.score.ToString();
@@ -245,14 +191,17 @@ namespace Snake {
 
             Menu.Visibility = Visibility.Collapsed;
             GameScreen.Visibility = Visibility.Visible;
-            StartGame();
+            SnakeGame.StartGame();
+
+            Tick();
+            timer.Start();
         }
 
         void ExitGameClick(object sender, RoutedEventArgs e) {
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
-        void EndGame() {
+        public void EndGame() {
             timer.Stop();
         }
 
