@@ -29,6 +29,11 @@
             Struct that gave CellContent instance
             </summary>
         </member>
+        <member name="F:Snake.Code.GridCell.content">
+            <summary>
+            CellContent instance 
+            </summary>
+        </member>
         <member name="T:Snake.Code.Grid">
             <summary>
             Class that take care of filling gamescene with grids
@@ -139,6 +144,11 @@
             Class that take care of our Snake color
             </summary>
         </member>
+        <member name="F:Snake.Code.SnakeColor.colorBrushes">
+            <summary>
+            Array of colors in SolidColorBrush type
+            </summary>
+        </member>
         <member name="T:Snake.Code.SnakeColor.ColorPalette">
             <summary>
             Enum palette with collors
@@ -186,19 +196,49 @@
         </member>
         <member name="M:Snake.Code.SnakeColor.GetColorBrush(Snake.Code.SnakeColor.ColorPalette)">
             <summary>
-            Make SolidColorBrush from our color palette
+            Get necessary color from colorBrushes array
             </summary>
             <param name="color">Color that we want from our palette</param>
-            <returns></returns>
+            <returns>Return given color from array </returns>
         </member>
         <member name="T:Snake.Code.Direction">
             <summary>
             Enum that show which direction player want move
             </summary>
         </member>
+        <member name="F:Snake.Code.Direction.None">
+            <summary>
+            Enum show player don't choose direction to move
+            </summary>
+        </member>
+        <member name="F:Snake.Code.Direction.Left">
+            <summary>
+            Enum show Snake should move left
+            </summary>
+        </member>
+        <member name="F:Snake.Code.Direction.Right">
+            <summary>
+            Enum show Snake should move right
+            </summary>
+        </member>
+        <member name="F:Snake.Code.Direction.Up">
+            <summary>
+            Enum show Snake should move Up
+            </summary>
+        </member>
+        <member name="F:Snake.Code.Direction.Down">
+            <summary>
+            Enum show Snake should move down
+            </summary>
+        </member>
         <member name="T:Snake.Code.SnakeEntity">
             <summary>
             Class take care of Snake body and moving
+            </summary>
+        </member>
+        <member name="F:Snake.Code.SnakeEntity.parts">
+            <summary>
+            List of Snake body in our game area
             </summary>
         </member>
         <member name="M:Snake.Code.SnakeEntity.#ctor(Snake.Code.Position,Snake.Code.Grid)">
