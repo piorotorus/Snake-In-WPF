@@ -10,16 +10,34 @@ namespace Snake.Code {
   /// Enum that show which direction player want move
   /// </summary>
     public enum Direction {
+        /// <summary>
+        /// Enum show player don't choose direction to move
+        /// </summary>
         None,
+        /// <summary>
+        /// Enum show Snake should move left
+        /// </summary>
         Left,
+        /// <summary>
+        /// Enum show Snake should move right
+        /// </summary>
         Right,
+        /// <summary>
+        /// Enum show Snake should move Up
+        /// </summary>
         Up,
+        /// <summary>
+        /// Enum show Snake should move down
+        /// </summary>
         Down
     }
     /// <summary>
     /// Class take care of Snake body and moving
     /// </summary>
     public class SnakeEntity {
+        /// <summary>
+        /// List of Snake body in our game area
+        /// </summary>
         public readonly List<Position> parts;
         Grid grid;
         Position spawnPoint;

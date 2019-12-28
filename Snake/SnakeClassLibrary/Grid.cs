@@ -10,12 +10,26 @@ namespace Snake.Code {
     /// Enum choose what to be in grid
     /// </summary>
     public enum CellContent {
+        /// <summary>
+        /// Enum of empty field in game area
+        /// </summary>
         Empty,
+        /// <summary>
+        /// Enum of field with apple in game area
+        /// </summary>
         Apple,
+        /// <summary>
+        /// Enum of with spikes in game area
+        /// </summary>
         Spikes
     }
- 
+    /// <summary>
+    /// Struct that gave CellContent instance
+    /// </summary>
     public struct GridCell {
+        /// <summary>
+        /// CellContent instance 
+        /// </summary>
         public CellContent content;
     }
 
