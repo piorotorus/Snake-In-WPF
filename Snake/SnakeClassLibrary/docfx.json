@@ -6,7 +6,7 @@
           "files": [
             "**.csproj"
           ],
-          "src": "C:\\Users\\Piotrek\\Documents\\Snake-In-WPF\\Snake\\SnakeClassLibrary"
+          "src": "./"
         }
       ],
       "dest": "api",

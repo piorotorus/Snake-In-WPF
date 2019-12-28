@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
-namespace Snake.Code {
+namespace Snake.Code
+{
     /// <summary>
     /// Class that take care of our Snake color
     /// </summary>

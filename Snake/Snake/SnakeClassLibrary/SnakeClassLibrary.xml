@@ -295,5 +295,85 @@
             Update position of Snake body depending on position of earlier Snake body elements
             </summary>
         </member>
+        <member name="T:SnakeClassLibrary.SnakeGame">
+            <summary>
+            Class take care of game logic and events
+            </summary>
+        </member>
+        <member name="M:SnakeClassLibrary.SnakeGame.Initialise">
+            <summary>
+            Method that create our game
+            </summary>
+        </member>
+        <member name="M:SnakeClassLibrary.SnakeGame.StartGame">
+            <summary>
+            Method that start our game
+            </summary>
+        </member>
+        <member name="M:SnakeClassLibrary.SnakeGame.HandleSnakeLogic(Snake.Code.Direction)">
+            <summary>
+            Method that handle whitch direction player move and check what is in cell that snake enter
+            </summary>
+            <param name="snakeDirection">Enum sthat shows dimove direction</param>
+            <returns>Return bool, false if game over(snake eat spikes or itself) or true if his move was correctly</returns>
+        </member>
+        <member name="M:SnakeClassLibrary.SnakeGame.Plant(Snake.Code.CellContent)">
+            <summary>
+            Set given content in random place in game area
+            </summary>
+            <param name="content">Content that should be showed in game area, like apple or spikes</param>
+        </member>
+        <member name="M:SnakeClassLibrary.SnakeGame.CellContainsSomethingOrSnakeIsThere(Snake.Code.Position@)">
+            <summary>
+            Method that check is sometihng in cell in given position
+            </summary>
+            <param name="position">Position that we want to check</param>
+            <returns>Return true if is something at this position and false if it's empty</returns>
+        </member>
+        <member name="T:SnakeClassLibrary.GameState">
+            <summary>
+            Struct that handle game variables
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.snakeColorIndex">
+            <summary>
+            Set color of our Snake
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.snake">
+            <summary>
+            Object represent our Snake
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.grid">
+            <summary>
+            Object represent one cell in our game
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.currentSnakeDirection">
+            <summary>
+            Enum that show whitch direction snake is moving, default on game start it is right
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.score">
+            <summary>
+            Score that player gain in cuurent game
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.cellWidth">
+            <summary>
+            Set game area width
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.sideCellCount">
+            <summary>
+            Set game area lenght
+            </summary>
+        </member>
+        <member name="F:SnakeClassLibrary.GameState.directionWasUpdatedInThisTickTime">
+            <summary>
+            Is game updating in tick time, activate when game is stardted
+            </summary>
+        </member>
     </members>
 </doc>
