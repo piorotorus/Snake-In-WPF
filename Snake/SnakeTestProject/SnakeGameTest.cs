@@ -25,6 +25,25 @@ namespace SnakeTestProject
             return foundApplesCount;
         }
 
+        int GetFilledCellsCount()
+        {
+            var p = new Position { X = 0, Y = 0 };
+            int filledCellsCount = 0;
+
+            for (int y = 0; y < GameState.sideCellCount; y++) {
+                p.Y = y;
+
+                for (int x = 0; x < GameState.sideCellCount; x++) {
+                    p.X = x;
+                    if (SnakeGame.CellContainsSomethingOrSnakeIsThere(ref p)) {
+                        filledCellsCount++;
+                    }
+                }
+            }
+
+            return filledCellsCount;
+        }
+
         [TestMethod]
         public void InitializeTest()
         {
@@ -85,15 +104,20 @@ namespace SnakeTestProject
         public void CellContainsSomethingOrSnakeIsThereTest()
         {
             SnakeGame.Initialise();
-
-            var appleCount = GetGridContentCount(CellContent.Apple);
-            Assert.IsTrue(appleCount == 0);
+            Assert.IsTrue(GetFilledCellsCount() == 1);
 
             SnakeGame.StartGame();
 
-            appleCount = GetGridContentCount(CellContent.Apple);
-            Assert.IsTrue(GameState.score == 0);
-            Assert.IsTrue(appleCount == 1);
+            Assert.IsTrue(GetFilledCellsCount() == 2);
+
+            GameState.snake.Grow();
+            GameState.snake.Move(Direction.Left);
+
+            Assert.IsTrue(GetFilledCellsCount() == 3);
+
+            SnakeGame.Plant(CellContent.Spikes);
+
+            Assert.IsTrue(GetFilledCellsCount() == 4);
         }
     }
 }
