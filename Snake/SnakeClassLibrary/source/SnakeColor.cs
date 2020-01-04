@@ -63,7 +63,11 @@ namespace Snake.Code
         /// <param name="color">Color that we want from our palette</param>
         /// <returns>Return given color from array </returns>
         static public SolidColorBrush GetColorBrush(ColorPalette color) {
-            return colorBrushes[(int)color];
+            int index = (int)color;
+            if (index < 0 || index >= colorBrushes.Length)
+                throw new System.Exception("invalid color parameter, resulting index is out of colorBrushes array bounds");
+
+            return colorBrushes[index];
         }
     }
 }
