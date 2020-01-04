@@ -33,15 +33,16 @@ namespace SnakeTestProject
         [TestMethod]
         public void GetIndexToCellTest()
         {
-            var num = 10;
-            var g = new Grid(num);
+            var side = 10;
+            var overflowNum = side + 1;
+            var g = new Grid(side);
 
             Position p = new Position { X = 0, Y = 0 };
 
-            for (int y = -11; y < 11; y++)
+            for (int y = -overflowNum; y < overflowNum; y++)
             {
                 p.Y = y;
-                for (int x = -11; x < 11; x++)
+                for (int x = -overflowNum; x < overflowNum; x++)
                 {
                     p.X = x;
                     var cellIndex = g.GetIndexToCell(ref p);
@@ -53,15 +54,15 @@ namespace SnakeTestProject
         [TestMethod]
         public void GetCellAtTest()
         {
-            var num = 10;
-            var g = new Grid(num);
+            var side = 10;
+            var g = new Grid(side);
 
             Position p = new Position { X = 0, Y = 0 };
 
-            for (int y = 0; y < num; y++) {
+            for (int y = 0; y < side; y++) {
                 p.Y = y;
 
-                for (int x = 0; x < num; x++) {
+                for (int x = 0; x < side; x++) {
                     p.X = x;
                     var cell = g.GetCellAt(p);
                 }
@@ -177,16 +178,18 @@ namespace SnakeTestProject
         [TestMethod]
         public void WrapPositionToGridTest()
         {
-            var num = 10;
-            var g = new Grid(num);
+            var side = 10;
+            var halfSide = side / 2;
+            var overflowHalfNum = halfSide + 2;
+            var g = new Grid(side);
 
             Position p = new Position { X = 0, Y = 0 };
 
-            for (int y = num - 1; y < num + 1; y++)
+            for (int y = -overflowHalfNum; y < overflowHalfNum; y++)
             {
                 p.Y = y;
 
-                for (int x = num - 1; x < num + 1; x++)
+                for (int x = -overflowHalfNum; x < overflowHalfNum; x++)
                 {
                     p.X = x;
                     g.WrapPositionToGrid(ref p);
