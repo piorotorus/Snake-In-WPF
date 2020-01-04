@@ -39,11 +39,17 @@
             Class that take care of filling gamescene with grids
             </summary>
         </member>
+        <member name="M:Snake.Code.Grid.#ctor(System.Int32)">
+            <summary>
+            Constructor of Grid class
+            </summary>
+            <param name="sideCellCount">Side cell count</param>
+        </member>
         <member name="M:Snake.Code.Grid.#ctor(System.UInt32)">
             <summary>
             Constructor of Grid class
             </summary>
-            <param name="sideCellCount">Sied cell count</param>
+            <param name="sideCellCount">Side cell count</param>
         </member>
         <member name="M:Snake.Code.Grid.GetIndexToCell(Snake.Code.Position@)">
             <summary>

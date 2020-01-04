@@ -44,8 +44,25 @@ namespace Snake.Code {
         /// <summary>
         /// Constructor of Grid class
         /// </summary>
-        /// <param name="sideCellCount">Sied cell count</param>
-        public Grid(uint sideCellCount) {
+        /// <param name="sideCellCount">Side cell count</param>
+        public Grid(int sideCellCount) {
+            if (sideCellCount <= 0)
+                throw new Exception("sideCellCount needs to be >0");
+
+            this.sideCellCount = (uint)sideCellCount;
+            cellCount = (uint)sideCellCount * (uint)sideCellCount;
+            cells = new GridCell[cellCount];
+        }
+
+        /// <summary>
+        /// Constructor of Grid class
+        /// </summary>
+        /// <param name="sideCellCount">Side cell count</param>
+        public Grid(uint sideCellCount)
+        {
+            if (sideCellCount <= 0)
+                throw new Exception("sideCellCount needs to be >0");
+
             this.sideCellCount = sideCellCount;
             cellCount = sideCellCount * sideCellCount;
             cells = new GridCell[cellCount];
