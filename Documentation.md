@@ -25,14 +25,14 @@ Kamil Jamruz 50%
 realizacja zadań
 
 Kamil Jamruz:
--Testy jednostkowe
--Logika gry (zarówno węża jak i powstawanie planszy oraz wszelkie zasady związane z naszą grą)
--kolorowanie węża i innych przedmiotów
--debugowanie
+-Testy jednostkowe<br/>
+-Logika gry (zarówno węża jak i powstawanie planszy oraz wszelkie zasady związane z naszą grą)<br/>
+-kolorowanie węża i innych przedmiotów<br/>
+-debugowanie<br/>
 
 Piotr Pochopień:
--Interfejs gry (Menu wraz z interrakcją buttonów i UI gry)
--dokumentacja xml i github
--przygotowanie instalatora
--testy jednostkowe
+-Interfejs gry (Menu wraz z interrakcją buttonów i UI gry)<br/>
+-dokumentacja xml i github<br/>
+-przygotowanie instalatora<br/>
+-testy jednostkowe<br/>
 
