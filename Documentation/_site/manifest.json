@@ -1,0 +1,270 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/Piotrek/Documents/Snake-In-WPF/Snake/SnakeClassLibrary",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.CellContent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.CellContent.html",
+          "hash": "k1OF8wY6COQt2dkobBvDww=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.Direction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.Direction.html",
+          "hash": "1y2J601ljzPpEc9SedZ/pQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.Grid.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.Grid.html",
+          "hash": "TEoztS+kQizMdX+Av02/Cg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.GridCell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.GridCell.html",
+          "hash": "VB8zcU754411VyHX5TdOHQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.Position.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.Position.html",
+          "hash": "IvWJYIQcElpq0U8KGpEH8Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.SnakeColor.ColorPalette.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.SnakeColor.ColorPalette.html",
+          "hash": "Mprg9qRqWJga9u7K4s3Ikg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.SnakeColor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.SnakeColor.html",
+          "hash": "x8izsxoRuuNFugLPIB4rew=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.SnakeEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.SnakeEntity.html",
+          "hash": "/KDQTkwWBgvjb8NShsnvgQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Snake.Code.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Snake.Code.html",
+          "hash": "vjB/VUBqpotcl+WMy7fW6w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SnakeClassLibrary.GameState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SnakeClassLibrary.GameState.html",
+          "hash": "BDn6lP3rJjY2s4L6RKaHuw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SnakeClassLibrary.SnakeGame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SnakeClassLibrary.SnakeGame.html",
+          "hash": "cUXla2RZDTauEmKT8le4JQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SnakeClassLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SnakeClassLibrary.html",
+          "hash": "jckhyiC4wRWLK7nNUosq0A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "Qnr6fTyWUfWTG2J8DVnvLQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "+t9Wu+PQ1L4dWvdWWHyGmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "QHiVh6mBmvXeVp00u/6arw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "/UwCv6ydclJ0MB2lAqOR2A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 12,
+          "skipped_file_count": 12
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
