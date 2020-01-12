@@ -1,7 +1,7 @@
 # Snake-In-WPF/ Pink Snake
 Repozytorium projektu na przedmiot Programowanie Obiektowe w języku C#.
 
-Autorzy: Piotr Pochopień, Kamil Jamruz
+Autorzy: Piotr Pochopień, Kamil Jamróz
 
 # Opis
 Projekt jest tworzony w języku C# używając Windows Presentation Foundation w programie Visual Studio.<br/>
@@ -21,11 +21,11 @@ Opisują one każdy element zawarty w projekcie class Library.
 
 # Procentowy udział i realizacja zadań
 Lider:Piotr Pochopień 50%<br/>
-Kamil Jamruz 50%
+Kamil Jamróz 50%
 
 Realizacja zadań:
 
-Kamil Jamruz:<br/>
+Kamil Jamróz:<br/>
 -Testy jednostkowe<br/>
 -Logika gry (zarówno węża jak i powstawanie planszy oraz wszelkie zasady związane z naszą grą)<br/>
 -kolorowanie węża i innych przedmiotów<br/>
