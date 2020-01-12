@@ -18,7 +18,7 @@ Gra została podzielona na 3 projekty:
 
 -Snake WPF w którym znajduje się interfejs gry czyli menu wraz z przyciskami oraz obrazkami i ich ułożenie.
 
-#Procentowy udział i realizacja zadań
+# Procentowy udział i realizacja zadań
 Lider:Piotr Pochopień 50%
 Kamil Jamruz 50%
 
